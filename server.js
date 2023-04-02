@@ -32,10 +32,14 @@ app.all('*', (req, res, next) => {
 
 
 
+const _Generalsetting = require("./Route/generalsetting");
 
 
 
 
+
+// Routes
+app.use('/Generalsetting',_Generalsetting)
 
 
 // this is our error handling !!!!!!!
