@@ -1,7 +1,8 @@
+require('dotenv').config();
 const express=require('express');
 const cors= require('cors')
 const LoadMyEnviormentVariables = require('./configuration/LoadEnv-variable');
-require('dotenv').config();
+
 
 
 
