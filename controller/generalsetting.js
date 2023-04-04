@@ -1,4 +1,4 @@
-const HeroImage = require("../model/generalsettingmodel");
+const {HeroImage,FourCards} = require("../model/generalsettingmodel");
 
 
 
@@ -33,8 +33,30 @@ const HeroImageApi = async (req, res) => {
   };
 
 
+  const FourCardsApi =async (req,res) =>{
+   try {
+        const {Headingone,HeadingTwo,HeadingThree,HeadingFour} = req.body;
+
+        const DoctoSend = new FourCards({
+            Headingone,HeadingTwo,HeadingThree,HeadingFour
+        });
+        const SaveDoc = await DoctoSend.save();
+        res.json({
+            message:"Api of FourCard is working",
+            Data:true,
+            Result:SaveDoc
+        })
+   } catch (error) {
+        res.json({
+            message:error.message,
+            Data:false,
+            Result:null
+        })
+   }
+  }
 
 
 module.exports={
-    HeroImageApi
+    HeroImageApi,
+    FourCardsApi
 }

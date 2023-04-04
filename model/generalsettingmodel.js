@@ -11,11 +11,8 @@ const month = today.getMonth() + 1;
 const year = today.getFullYear(); //year
 const time = today.getTime(); //time 
 
-
 //Start Block Schema Creating
-const HeroImage = mongoose.Schema({
-
-    
+const HeroImage = new mongoose.Schema({
     ImageDetail: [
         {
             ImageUrl: { type: String },
@@ -30,5 +27,31 @@ const HeroImage = mongoose.Schema({
 }, { timestamps: true })
 
 
-//Exporting The Schema
-module.exports = mongoose.model('HeroImage', HeroImage);
+
+// FourCards
+
+const FourCards = new mongoose.Schema({
+    Headingone: {type:String, required:true },
+    HeadingTwo: {type:String, required:true },
+    HeadingThree: {type:String, required:true },
+    HeadingFour: {type:String, required:true },
+    CreatedDate: {
+        type: String,
+        default: `${year}-${month}-${day}-${time}`,
+    }
+},
+ { timestamps: true })
+
+
+
+ //Exporting The Schema
+// module.exports = mongoose.model('HeroImage', HeroImage);
+// module.exports = mongoose.model('FourCards', FourCards)
+
+
+
+module.exports = {
+    HeroImage: mongoose.model('HeroImage', HeroImage),
+    FourCards: mongoose.model('FourCards', FourCards),
+  
+  };
