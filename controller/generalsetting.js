@@ -73,8 +73,31 @@ const HeroImageApi = async (req, res) => {
       }
   }
 
+
+  const DelFourCards =async (req,res) =>{
+      
+      try {
+        const Id = req.params._id;
+        const CardToDel = new FourCards(
+            {_id:Id}
+        );
+        const DocToDel = await CardToDel.deleteOne();
+        res.json({
+            message:"Api of del is working successfully!!!",
+            Data:true,
+            Result:DocToDel
+        })
+      } catch (error) {
+        res.json({
+            message:error.message,
+            Data:false,
+            Result:null
+        })
+      }
+  }
 module.exports={
     HeroImageApi,
     FourCardsApi,
-    GetHeadingDescriptionFourCards
+    GetHeadingDescriptionFourCards,
+    DelFourCards
 }
