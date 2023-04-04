@@ -56,7 +56,25 @@ const HeroImageApi = async (req, res) => {
   }
 
 
+  const GetHeadingDescriptionFourCards =async (req,res) =>{
+      try {
+        const GetFourCard = await FourCards.find();
+        res.json({
+            message:"Api of GetFourCard Is Working Successfully!!",
+            Data:true,
+            Result:GetFourCard
+        })
+      } catch (error) {
+        res.json({
+            message:error.message,
+            Data:false,
+            Result:null
+        })
+      }
+  }
+
 module.exports={
     HeroImageApi,
-    FourCardsApi
+    FourCardsApi,
+    GetHeadingDescriptionFourCards
 }
