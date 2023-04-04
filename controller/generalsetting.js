@@ -1,17 +1,19 @@
 const HeroImage = require("../model/generalsettingmodel");
 
 
+
 const HeroImageApi = async (req, res) => {
     try {
       let ImageDetails = []; // Define ImageDetails array here
       req.files.forEach((element) => {
         const { filename, orignalname, mimetype } = element;
         ImageDetails.push({
-          ImageUrl: `/assets/heroimage/${filename}`,
+          ImageUrl: `./asserts/heroimage/${filename}`,
           ImageName: orignalname,
           ImageMimeType: mimetype,
         });
       });
+      
       const ImageToSave = new HeroImage({
         ImageDetail: ImageDetails,
       });
@@ -29,6 +31,7 @@ const HeroImageApi = async (req, res) => {
       });
     }
   };
+
 
 
 
