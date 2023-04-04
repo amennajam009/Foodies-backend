@@ -32,9 +32,13 @@ const HeroImage = new mongoose.Schema({
 
 const FourCards = new mongoose.Schema({
     Headingone: {type:String, required:true },
+    descriptionone: {type:String, required:true },
     HeadingTwo: {type:String, required:true },
+    descriptionTwo: {type:String, required:true },
     HeadingThree: {type:String, required:true },
+    descriptionThree: {type:String, required:true },
     HeadingFour: {type:String, required:true },
+    descriptionFour:{type:String, required:true},
     CreatedDate: {
         type: String,
         default: `${year}-${month}-${day}-${time}`,
@@ -58,6 +62,6 @@ module.exports = {
 
 
 
-  
+
 
 

@@ -35,10 +35,10 @@ const HeroImageApi = async (req, res) => {
 
   const FourCardsApi =async (req,res) =>{
    try {
-        const {Headingone,HeadingTwo,HeadingThree,HeadingFour} = req.body;
+        const {Headingone,descriptionone,HeadingTwo,descriptionTwo,HeadingThree,descriptionThree,HeadingFour,descriptionFour} = req.body;
 
         const DoctoSend = new FourCards({
-            Headingone,HeadingTwo,HeadingThree,HeadingFour
+            Headingone,descriptionone,HeadingTwo,descriptionTwo,HeadingThree,descriptionThree,HeadingFour,descriptionFour
         });
         const SaveDoc = await DoctoSend.save();
         res.json({
