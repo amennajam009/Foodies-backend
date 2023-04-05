@@ -42,7 +42,7 @@ const _Generalsetting = require("./Route/generalsetting");
 
 // Routes
 app.use('/Generalsetting',_Generalsetting)
-
+app.use('/assets', express.static('assets')); 
 
 // this is our error handling !!!!!!!
 app.use((req, res, next) => {

@@ -109,41 +109,7 @@ const HeroImageApi = async (req, res) => {
   }
 
 
-  const ProductData=async (req,res )=>{
-    try {
-        const{Headingone,descriptionone,HeadingTwo,descriptionTwo,
-          HeadingThree,descriptionThree,HeadingFour,descriptionFour,}=req.body
-        let ImageDetails=[]
-        // let Size=selectSize.split(',')
-        req.files.forEach(element => {
-            const {filename,orignalname,mimetype}=element
-            ImageDetails.push({
-                ImageUrl:`assets/product/${Headingone}/${filename}`,
-                ImageName:orignalname,
-                ImageMimeType:mimetype
-            })
-        });
-        // creating collection in database 
-        const documentoCraete=  new ProductModelSchema({
-          Headingone,descriptionone,HeadingTwo,descriptionTwo,
-          HeadingThree,descriptionThree,HeadingFour,descriptionFour,
-            ImageDetail:ImageDetails
-        })
-        // if data is saved this will be the response 
-        const documentoSave=await documentoCraete.save();
-        res.json({
-            message:"Data SentSuccessful ",
-            data:true,
-            Body:documentoSave
-        })
-    } catch (error) {
-      res.json({
-        message: error.message,
-        Result: null,
-        Data: false
-      })
-    }
-    }
+
 
   
 module.exports={
@@ -151,5 +117,5 @@ module.exports={
     FourCardsApi,
     GetHeadingDescriptionFourCards,
     DelFourCards,
-    ProductData
+    
 }
