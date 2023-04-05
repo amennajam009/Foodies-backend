@@ -1,5 +1,5 @@
 const {HeroImage,FourCards} = require("../model/generalsettingmodel");
-
+const fs=require('fs')
 
 
 const HeroImageApi = async (req, res) => {
@@ -35,10 +35,21 @@ const HeroImageApi = async (req, res) => {
 
   const FourCardsApi =async (req,res) =>{
    try {
-        const {Headingone,descriptionone,HeadingTwo,descriptionTwo,HeadingThree,descriptionThree,HeadingFour,descriptionFour} = req.body;
-
+        const {Headingone,descriptionone,HeadingTwo,descriptionTwo,
+             HeadingThree,descriptionThree,HeadingFour,descriptionFour,
+                } = req.body;
+                let ImageDetails=[]
+                req.files.forEach(element => {
+                  const {filename,orignalname,mimetype}=element
+                  ImageDetails.push({
+                      ImageUrl:`assets/Fourcards/${Headingone}/${filename}`,
+                      ImageName:orignalname,
+                      ImageMimeType:mimetype
+                  })
+              });
         const DoctoSend = new FourCards({
-            Headingone,descriptionone,HeadingTwo,descriptionTwo,HeadingThree,descriptionThree,HeadingFour,descriptionFour
+            Headingone,descriptionone,HeadingTwo,descriptionTwo,HeadingThree,descriptionThree,HeadingFour,descriptionFour,
+            ImageDetail:ImageDetails
         });
         const SaveDoc = await DoctoSend.save();
         res.json({
@@ -95,6 +106,11 @@ const HeroImageApi = async (req, res) => {
         })
       }
   }
+
+
+
+
+  
 module.exports={
     HeroImageApi,
     FourCardsApi,

@@ -11,7 +11,7 @@ const {UploadProductImage} =require('../middleware/uploadimage');
 
 
 Router.post('/HeroImageApi',UploadProductImage.array('images',20),HeroImageApi);
-Router.post('/FourCardsApi',FourCardsApi);
+Router.post('/FourCardsApi',UploadProductImage.array('images',20),FourCardsApi);
 Router.get("/GetHeadingDescriptionFourCards",GetHeadingDescriptionFourCards);
 Router.delete("/DelFourCards/:_id", DelFourCards);
 
