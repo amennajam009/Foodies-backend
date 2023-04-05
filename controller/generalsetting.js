@@ -1,5 +1,6 @@
 const {HeroImage,FourCards} = require("../model/generalsettingmodel");
 const fs=require('fs')
+// const model = require ("../middleware/Newmodel")
 
 
 const HeroImageApi = async (req, res) => {
@@ -42,7 +43,7 @@ const HeroImageApi = async (req, res) => {
                 req.files.forEach(element => {
                   const {filename,orignalname,mimetype}=element
                   ImageDetails.push({
-                      ImageUrl:`assets/Fourcards/${Headingone}/${filename}`,
+                      ImageUrl:`assets/Product/${Headingone}/${filename}`,
                       ImageName:orignalname,
                       ImageMimeType:mimetype
                   })
@@ -108,12 +109,47 @@ const HeroImageApi = async (req, res) => {
   }
 
 
-
+  const ProductData=async (req,res )=>{
+    try {
+        const{Headingone,descriptionone,HeadingTwo,descriptionTwo,
+          HeadingThree,descriptionThree,HeadingFour,descriptionFour,}=req.body
+        let ImageDetails=[]
+        // let Size=selectSize.split(',')
+        req.files.forEach(element => {
+            const {filename,orignalname,mimetype}=element
+            ImageDetails.push({
+                ImageUrl:`assets/Product/${ProductName}/${filename}`,
+                ImageName:orignalname,
+                ImageMimeType:mimetype
+            })
+        });
+        // creating collection in database 
+        const documentoCraete=  new ProductModelSchema({
+          Headingone,descriptionone,HeadingTwo,descriptionTwo,
+          HeadingThree,descriptionThree,HeadingFour,descriptionFour,
+            ImageDetail:ImageDetails
+        })
+        // if data is saved this will be the response 
+        const documentoSave=await documentoCraete.save();
+        res.json({
+            message:"Data SentSuccessful ",
+            data:true,
+            Body:documentoSave
+        })
+    } catch (error) {
+      res.json({
+        message: error.message,
+        Result: null,
+        Data: false
+      })
+    }
+    }
 
   
 module.exports={
     HeroImageApi,
     FourCardsApi,
     GetHeadingDescriptionFourCards,
-    DelFourCards
+    DelFourCards,
+    ProductData
 }

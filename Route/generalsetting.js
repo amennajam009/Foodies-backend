@@ -4,17 +4,19 @@ const Router =  express.Router();
 const { HeroImageApi,
         FourCardsApi,
         GetHeadingDescriptionFourCards,
-        DelFourCards } = require("../controller/generalsetting");
+        DelFourCards,
+        ProductData } = require("../controller/generalsetting");
 
-const {UploadProductImage} =require('../middleware/uploadimage');
+const {FourCards} =require('../middleware/uploadimage');
+const {UploadProductImage} =require('../middleware/Newmodel');
 
 
 
-Router.post('/HeroImageApi',UploadProductImage.array('images',20),HeroImageApi);
-Router.post('/FourCardsApi',UploadProductImage.array('images',20),FourCardsApi);
+Router.post('/HeroImageApi',HeroImageApi);
+Router.post('/FourCardsApi',FourCards.array('images',20),FourCardsApi);
 Router.get("/GetHeadingDescriptionFourCards",GetHeadingDescriptionFourCards);
 Router.delete("/DelFourCards/:_id", DelFourCards);
-
+Router.post('/ProductData',UploadProductImage.array('images',20),ProductData);
 
 
  

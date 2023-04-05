@@ -1,9 +1,10 @@
 require('dotenv').config();
 const express=require('express');
+const path=require('path')
 const cors= require('cors')
 const LoadMyEnviormentVariables = require('./configuration/LoadEnv-variable');
 const database = require("./configuration/config");
-const path=require('path')
+
 
 
 
@@ -15,7 +16,7 @@ app.use(express.text());
 app.use(express.raw());
 app.use(cors());
 // static ka matlb hai icko hum access kr paa rhy han 
-app.use('/asserts', express.static('asserts')); 
+app.use('/assets', express.static('assets')); 
 const PORT = process.env.PORT || 6000
 
 
