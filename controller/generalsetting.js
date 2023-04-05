@@ -118,7 +118,7 @@ const HeroImageApi = async (req, res) => {
         req.files.forEach(element => {
             const {filename,orignalname,mimetype}=element
             ImageDetails.push({
-                ImageUrl:`assets/Product/${ProductName}/${filename}`,
+                ImageUrl:`assets/product/${Headingone}/${filename}`,
                 ImageName:orignalname,
                 ImageMimeType:mimetype
             })
