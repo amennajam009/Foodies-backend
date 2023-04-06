@@ -1,5 +1,5 @@
 const {HeroImage,FourCards} = require("../model/generalsettingmodel");
-// const fs=require('fs')
+const fs=require('fs');
 // const model = require ("../middleware/Newmodel")
 
 
@@ -52,16 +52,16 @@ const HeroImageApi = async (req, res) => {
                       ImageMimeType:mimetype
                   })
               });
-              if (req.files && req.files.length > 0) {
-                req.files.forEach(element => {
-                  const {filename,orignalname,mimetype}=element
-                  ImageDetails.push({
-                      ImageUrl:`assets/Product/${Headingone}/${filename}`,
-                      ImageName:orignalname,
-                      ImageMimeType:mimetype
-                  })
-                });
-              }
+              // if (req.files && req.files.length > 0) {
+              //   req.files.forEach(element => {
+              //     const {filename,orignalname,mimetype}=element
+              //     ImageDetails.push({
+              //         ImageUrl:`assets/Product/${Headingone}/${filename}`,
+              //         ImageName:orignalname,
+              //         ImageMimeType:mimetype
+              //     })
+              //   });
+              // }
         const DoctoSend = new FourCards({
             Headingone,descriptionone,HeadingTwo,descriptionTwo,HeadingThree,descriptionThree,HeadingFour,descriptionFour,
             ImageDetail:ImageDetails
@@ -140,12 +140,40 @@ const HeroImageApi = async (req, res) => {
   }
 
 
+  const Harddelete = async (req, res) => {
+    try {
+      const Id = req.params._id;
+      const DocToHardDel = await FourCards.findOne({_id: Id});
+      if (!!DocToHardDel) {
+        const HardDelById = await FourCards.deleteOne({_id: DocToHardDel._id});
+        DocToHardDel.ImageDetail.forEach((file) => {
+          fs.unlinkSync(`${file.ImageUrl}`);
+        });
+        fs.rmdirSync(`./assets/Product/${DocToHardDel.Headingone}`);
+        res.json({
+          message: "Api of HardDelete Is Working Successfully!!",
+          Data: true,
+          Result: HardDelById
+        });
+      }
+    } catch (error) {
+      res.json({
+        message: error.message,
+        Data: false,
+        Result: null
+      });
+    }
+  };
+
+
   
 module.exports={
     HeroImageApi,
     FourCardsApi,
     GetHeadingDescriptionFourCards,
     DelFourCards,
-    DeleteAllDatabase
+    DeleteAllDatabase,
+    Harddelete,
+   
     
 }
