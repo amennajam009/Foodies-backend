@@ -14,7 +14,7 @@ const { HeroImageApi,
 
 
 
-Router.post('/HeroImageApi',HeroImageApi);
+Router.post('/HeroImageApi',FourCards.array('images',20),HeroImageApi);
 Router.post('/FourCardsApi',FourCards.array('images',20),FourCardsApi);
 Router.get("/GetHeadingDescriptionFourCards",GetHeadingDescriptionFourCards);
 Router.delete("/DelFourCards/:_id", DelFourCards);

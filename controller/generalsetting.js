@@ -12,7 +12,7 @@ const HeroImageApi = async (req, res) => {
       req.files.forEach((element) => {
         const { filename, orignalname, mimetype } = element;
         ImageDetails.push({
-          ImageUrl: `./asserts/heroimage/${filename}`,
+          ImageUrl: `./assets/heroimage/${mimetype}/${filename}`,
           ImageName: orignalname,
           ImageMimeType: mimetype,
         });
@@ -52,16 +52,6 @@ const HeroImageApi = async (req, res) => {
                       ImageMimeType:mimetype
                   })
               });
-              // if (req.files && req.files.length > 0) {
-              //   req.files.forEach(element => {
-              //     const {filename,orignalname,mimetype}=element
-              //     ImageDetails.push({
-              //         ImageUrl:`assets/Product/${Headingone}/${filename}`,
-              //         ImageName:orignalname,
-              //         ImageMimeType:mimetype
-              //     })
-              //   });
-              // }
         const DoctoSend = new FourCards({
             Headingone,descriptionone,HeadingTwo,descriptionTwo,HeadingThree,descriptionThree,HeadingFour,descriptionFour,
             ImageDetail:ImageDetails
