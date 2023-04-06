@@ -2,7 +2,7 @@ const express=require('express');
 require('dotenv').config();
 const path=require('path')
 const cors= require('cors')
-const LoadMyEnviormentVariables = require('./configuration/LoadEnv-variable');
+// const LoadMyEnviormentVariables = require('./configuration/LoadEnv-variable');
 const database = require("./configuration/config");
 
 
@@ -42,7 +42,7 @@ const _Generalsetting = require("./Route/generalsetting");
 
 // Routes
 app.use('/Generalsetting',_Generalsetting)
-app.use('/assets', express.static('assets')); 
+
 
 // this is our error handling !!!!!!!
 app.use((req, res, next) => {
