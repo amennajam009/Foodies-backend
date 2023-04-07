@@ -5,22 +5,22 @@ const fs=require('fs');
 
 const HeroImageApi = async (req, res) => {
     try {
-      let ImageDetails = [];
+      let imageDetails = [];
                              
       // Define ImageDetails array here
       
       req.files.forEach((element) => {
         const { filename, orignalname, mimetype } = element;
-        ImageDetails.push({
-          ImageUrl: `./assets/heroimage/${mimetype}/${filename}`,
-          ImageName: orignalname,
-          ImageMimeType: mimetype,
+        imageDetails.push({
+          imageUrl: `./assets/heroimage/${filename}`,
+          imageName: orignalname,
+          mageMimeType: mimetype,
         });
       });
       console.log(req.files)
       
       const ImageToSave = new HeroImage({
-        ImageDetail: ImageDetails,
+        imageDetail: imageDetails,
       });
       const DocToSave = await ImageToSave.save();
       res.json({

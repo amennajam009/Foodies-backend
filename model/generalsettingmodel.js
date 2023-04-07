@@ -13,11 +13,11 @@ const time = today.getTime(); //time
 
 //Start Block Schema Creating
 const HeroImage = new mongoose.Schema({
-    ImageDetail: [
+    imageDetail: [
         {
-            ImageUrl: { type: String },
-            ImageName: { type: String },
-            ImageMimeType: { type: String },
+            imageUrl: { type: String },
+            imageName: { type: String },
+            imageMimeType: { type: String },
         }
     ],
     CreatedDate: {

@@ -20,10 +20,10 @@ const hashFunc = (fileName) => {
 //Block Ends For Hashing the ImageUrl
 
 //Block Start MiddleWare For handling The Single Image WIth HashFunction.
-let UploadProductImage = multer({
+let HeroImageMiddle = multer({
     storage: multer.diskStorage({
         destination: (req, next, cb) => {
-            let path = `./assets/Product/${req.body.Headingone}`;
+            let path = `./assets/heroimage`;
             if (!fs.existsSync(path)) {
                 fs.mkdirSync(path, function (err, res) {
                     if (err) {
@@ -52,4 +52,4 @@ let UploadProductImage = multer({
 
 //Block Ends MiddleWare For handling The Single Image WIth HashFunction.
 
-module.exports = { UploadProductImage };
+module.exports = { HeroImageMiddle };
