@@ -88,7 +88,23 @@ const HeroImageApi = async (req, res) => {
         })
       }
   }
-
+ 
+const GetHeroImage =async (req,res) =>{
+  try {
+    const HeroImageOfHome = await HeroImage.find();
+    res.json({
+      message:"Api of GetHero is working",
+      Data:true,
+      Result:HeroImageOfHome
+    })
+  } catch (error) {
+    res.json({
+      message:error.message,
+      Data:false,
+      Result:null
+  })
+  }
+}
 
   const DelFourCards =async (req,res) =>{
       
@@ -164,6 +180,6 @@ module.exports={
     DelFourCards,
     DeleteAllDatabase,
     Harddelete,
-   
+    GetHeroImage
     
 }
