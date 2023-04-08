@@ -41,9 +41,9 @@ const FourCards = new mongoose.Schema({
     descriptionFour:{type:String, required:true},
     ImageDetail: [
         {
-            ImageUrl: { type: String },
-            ImageName: { type: String },
-            ImageMimeType: { type: String },
+            ImageUrl: { type: String  },
+            ImageName: { type: String  },
+            ImageMimeType: { type: String},
         }
     ],
     CreatedDate: {
