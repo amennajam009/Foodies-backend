@@ -172,6 +172,33 @@ const GetHeroImage =async (req,res) =>{
   };
 
 
+
+
+  const HardDeletHeroImage = async(req,res)=>{
+        try {
+          const Id = req.params._id;
+          const DocToHardDel = await HeroImage.findOne({_id: Id});
+          if (!!DocToHardDel) {
+            const HardDelById = await HeroImage.deleteOne({_id: DocToHardDel._id});
+            DocToHardDel.imageDetail.forEach((file) => {
+              fs.unlinkSync(`${file.imageUrl}`);
+            });
+            fs.rmdirSync(`./assets/heroimage`);
+            res.json({
+              message: "Api of HardDelete Is Working Successfully!!",
+              Data: true,
+              Result: HardDelById
+            });
+          }
+        } catch (error) {
+          res.json({
+            message:error.message,
+            Data:false,
+            Result:null
+          })
+        }
+  }
+
   
 module.exports={
     HeroImageApi,
@@ -180,6 +207,7 @@ module.exports={
     DelFourCards,
     DeleteAllDatabase,
     Harddelete,
-    GetHeroImage
+    GetHeroImage,
+    HardDeletHeroImage
     
 }
