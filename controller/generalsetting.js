@@ -220,6 +220,25 @@ const GetHeroImage =async (req,res) =>{
 
   }
 
+  const GetFourCardsById =async (req,res) =>{
+       try {
+        const Id = req.params._id;
+        const GetById = await FourCards.findOne(
+          {_id:Id}
+        );
+        res.json({
+          message:"Api Works Successfully!!",
+          Data:true,
+          Result:GetById
+        })
+       } catch (error) {
+        res.json({
+          message:error.message,
+          Data:false,
+          Result:null
+        })
+       }
+  }
   
 module.exports={
     HeroImageApi,
@@ -230,6 +249,7 @@ module.exports={
     Harddelete,
     GetHeroImage,
     HardDeletHeroImage,
-    HeroImageGetById
+    HeroImageGetById,
+    GetFourCardsById
     
 }

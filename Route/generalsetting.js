@@ -10,7 +10,8 @@ const { HeroImageApi,
         Harddelete,
         GetHeroImage,
         HardDeletHeroImage,
-        HeroImageGetById
+        HeroImageGetById,
+        GetFourCardsById
     
          } = require("../controller/generalsetting");
 
@@ -25,7 +26,9 @@ Router.delete("/DelFourCards/:_id", DelFourCards);
 Router.delete("/DeleteAllDatabase",DeleteAllDatabase);
 Router.delete("/Harddelete/:_id",Harddelete);
 Router.delete("/HardDeletHeroImage/:_id",HardDeletHeroImage);
-Router.get('/HeroImageGetById/:_id',HeroImageGetById)
+Router.get('/HeroImageGetById/:_id',HeroImageGetById);
+Router.get('/GetFourCardsById/:_id',GetFourCardsById)
+
 
 
 
