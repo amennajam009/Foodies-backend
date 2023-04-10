@@ -106,7 +106,7 @@ const GetHeroImage =async (req,res) =>{
   }
 }
 
-  const DelFourCards =async (req,res) =>{
+  const HardDelFourCards =async (req,res) =>{
       
       try {
         const Id = req.params._id;
@@ -239,12 +239,14 @@ const GetHeroImage =async (req,res) =>{
         })
        }
   }
+
+  
   
 module.exports={
     HeroImageApi,
     FourCardsApi,
     GetHeadingDescriptionFourCards,
-    DelFourCards,
+    HardDelFourCards,
     DeleteAllDatabase,
     Harddelete,
     GetHeroImage,
