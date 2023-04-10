@@ -20,6 +20,7 @@ const HeroImage = new mongoose.Schema({
             imageMimeType: { type: String },
         }
     ],
+    status: { type: Number, default: 1 },
     CreatedDate: {
         type: String,
         default: `${year}-${month}-${day}-${time}`,
@@ -39,6 +40,7 @@ const FourCards = new mongoose.Schema({
     descriptionThree: {type:String, required:true },
     HeadingFour: {type:String, required:true },
     descriptionFour:{type:String, required:true},
+    status: { type: Number, default: 1 },
     ImageDetail: [
         {
             ImageUrl: { type: String  },
