@@ -199,6 +199,27 @@ const GetHeroImage =async (req,res) =>{
         }
   }
 
+  const HeroImageGetById =async (req,res) =>{
+    try {
+      const Id = req.params._id;
+      const GetbyId = await HeroImage.findOne(
+        {_id:Id}
+      );
+      res.json({
+        message:"Api Working Successfully",
+        Data:true,
+        Result:GetbyId
+      })
+    } catch (error) {
+      res.json({
+        message:error.message,
+        Data:false,
+        Result:null
+      })
+    }
+
+  }
+
   
 module.exports={
     HeroImageApi,
@@ -208,6 +229,7 @@ module.exports={
     DeleteAllDatabase,
     Harddelete,
     GetHeroImage,
-    HardDeletHeroImage
+    HardDeletHeroImage,
+    HeroImageGetById
     
 }
