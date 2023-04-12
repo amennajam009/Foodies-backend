@@ -20,10 +20,10 @@ const hashFunc = (fileName) => {
 //Block Ends For Hashing the ImageUrl
 
 //Block Start MiddleWare For handling The Single Image WIth HashFunction.
-let FourCards = multer({
+let TwoImageMiddle = multer({
     storage: multer.diskStorage({
         destination: (req, next, cb) => {
-            let path = `./assets/cards/${req.body.cardName}`;
+            let path = `./assets/Twoimage`;
             if (!fs.existsSync(path)) {
                 fs.mkdirSync(path, function (err, res) {
                     if (err) {
@@ -52,4 +52,4 @@ let FourCards = multer({
 
 //Block Ends MiddleWare For handling The Single Image WIth HashFunction.
 
-module.exports = { FourCards };
+module.exports = { TwoImageMiddle };

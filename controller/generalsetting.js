@@ -1,4 +1,5 @@
-const {HeroImage,FourCards} = require("../model/generalsettingmodel");
+const {HeroImage,FourCards, TwoCards} = require("../model/generalsettingmodel");
+const  homeCardModel  = require('../model/homePagecards')
 const fs=require('fs');
 // const model = require ("../middleware/Newmodel")
 
@@ -14,7 +15,7 @@ const HeroImageApi = async (req, res) => {
         imageDetails.push({
           imageUrl: `./assets/heroimage/${filename}`,
           imageName: orignalname,
-          mageMimeType: mimetype,
+          ImageMimeType: mimetype,
         });
       });
       console.log(req.files)
@@ -40,33 +41,32 @@ const HeroImageApi = async (req, res) => {
 
   const FourCardsApi =async (req,res) =>{
    try {
-        const {Headingone,descriptionone,HeadingTwo,descriptionTwo,
-             HeadingThree,descriptionThree,HeadingFour,descriptionFour,
-                } = req.body;
-                let ImageDetails=[]
-                req.files.forEach(element => {
-                  const {filename,orignalname,mimetype}=element
-                  ImageDetails.push({
-                      ImageUrl:`assets/Product/${Headingone}/${filename}`,
-                      ImageName:orignalname,
-                      ImageMimeType:mimetype
-                  })
-              });
-        const DoctoSend = new FourCards({
-            Headingone,descriptionone,HeadingTwo,descriptionTwo,HeadingThree,descriptionThree,HeadingFour,descriptionFour,
-            ImageDetail:ImageDetails
+        const { cardName,cardDescriptionFour } = req.body; 
+        // const imageDetails = req.files.map(file => ({
+        // imageUrl: `assets/cards/${file.filename}`,
+        //   imageName: file.originalname,
+        //   imageMimeType: file.mimetype
+        // }));
+      
+        const docToCreate = new homeCardModel({
+          cardName, cardDescriptionFour, 
+          imageDetails: {
+            imageUrl: `assets/cards/${cardName}/${req.file.filename}`,
+            imageName: req.file.originalname,
+            imageMimeType: req.file.mimetype,
+        }
         });
-        const SaveDoc = await DoctoSend.save();
+        const docToSave = await docToCreate.save(); 
         res.json({
-            message:"Api of FourCard is working",
-            Data:true,
-            Result:SaveDoc
+            message:"Card Saved !!!",
+            data:true,
+            result:docToSave 
         })
    } catch (error) {
         res.json({
             message:error.message,
-            Data:false,
-            Result:null
+            data:false, 
+            result:null
         })
    }
   }
@@ -74,7 +74,7 @@ const HeroImageApi = async (req, res) => {
 
   const GetHeadingDescriptionFourCards =async (req,res) =>{
       try {
-        const GetFourCard = await FourCards.find();
+        const GetFourCard = await homeCardModel.find().lean();
         res.json({
             message:"Api of GetFourCard Is Working Successfully!!",
             Data:true,
@@ -82,7 +82,7 @@ const HeroImageApi = async (req, res) => {
         })
       } catch (error) {
         res.json({
-            message:error.message,
+            message:error.message, 
             Data:false,
             Result:null
         })
@@ -146,32 +146,64 @@ const GetHeroImage =async (req,res) =>{
   }
 
 
+  // const Harddelete = async (req, res) => {
+  //   try {
+  //     const Id = req.params._id;
+  //     const DocToHardDel = await homeCardModel.findOne({_id: Id});
+  //     if (!!DocToHardDel) {
+  //       const HardDelById = await homeCardModel.deleteOne({_id: DocToHardDel._id});
+  //       DocToHardDel.imageDetails.forEach((file) => {
+  //         fs.unlinkSync(`${file.imageUrl}`);
+  //       });
+  //       fs.rmdirSync(`./assets/cards/${DocToHardDel.cardName}`);
+  //       res.json({
+  //         message: "Api of HardDelete Is Working Successfully!!",
+  //         Data: true,
+  //         Result: HardDelById
+  //       });
+  //     }
+  //   } catch (error) {
+  //     res.json({
+  //       message: error.message,
+  //       Data: false,
+  //       Result: null
+  //     });
+  //   }
+  // };
+
   const Harddelete = async (req, res) => {
     try {
-      const Id = req.params._id;
-      const DocToHardDel = await FourCards.findOne({_id: Id});
-      if (!!DocToHardDel) {
-        const HardDelById = await FourCards.deleteOne({_id: DocToHardDel._id});
-        DocToHardDel.ImageDetail.forEach((file) => {
-          fs.unlinkSync(`${file.ImageUrl}`);
-        });
-        fs.rmdirSync(`./assets/Product/${DocToHardDel.Headingone}`);
-        res.json({
-          message: "Api of HardDelete Is Working Successfully!!",
-          Data: true,
-          Result: HardDelById
+      const { _id } = req.params;
+  
+      const docToDelete = await homeCardModel.findById(_id);
+      if (!docToDelete) {
+        return res.status(404).json({
+          message: 'Card not found',
+          data: false,
+          result: null,
         });
       }
-    } catch (error) {
+  
+      const imagePath = `./${docToDelete.imageDetails.imageUrl}`;
+      fs.unlinkSync(imagePath);
+      fs.rmdirSync(`./assets/cards/${docToDelete.cardName}`);
+  
+      const hardDeleteResult = await homeCardModel.deleteOne({ _id });
+  
       res.json({
+        message: 'Card deleted successfully',
+        data: true,
+        result: hardDeleteResult,
+      });
+    } catch (error) {
+      res.status(500).json({
         message: error.message,
-        Data: false,
-        Result: null
+        data: false,
+        result: null,
       });
     }
   };
-
-
+ 
 
 
   const HardDeletHeroImage = async(req,res)=>{
@@ -240,8 +272,103 @@ const GetHeroImage =async (req,res) =>{
        }
   }
 
+  // const TwoImagesApi = async (req, res) => {
+  //   try {
+  //     let ImageDetails = [];
+                             
+  //     // Define ImageDetails array here
+      
+  //     req.files.forEach((element) => {
+  //       const { filename, orignalname, mimetype } = element;
+  //       ImageDetails.push({
+  //         ImageUrl: `./assets/Twoimage/${filename}`,
+  //         ImageName: orignalname,
+  //         ImageMimeType: mimetype,
+  //       });
+  //     });
+  //     console.log(req.files)
+      
+  //     const ImageToSave = new TwoCards({
+  //       ImageDetail: ImageDetails,
+  //     });
+  //     const DocToSave = await ImageToSave.save();
+  //     res.json({
+  //       Message: "Api of Image Is Working",
+  //       Data: true,
+  //       Result: DocToSave,
+  //     });
+  //   } catch (error) {
+  //     res.json({
+  //       Message: error.message,
+  //       Data: false,
+  //       Result: null,
+  //     });
+  //   }
+  // };
   
+
   
+const TwoImagesApi = async (req, res) => {
+  try {
+    let imageDetails = [];
+                           
+    // Define ImageDetails array here
+    
+    req.files.forEach((element) => {
+      const { filename, orignalname, mimetype } = element;
+      imageDetails.push({
+        imageUrl: `./assets/Twoimage/${filename}`,
+        imageName: orignalname,
+        imageMimeType: mimetype,
+      });
+    });
+    console.log(req.files)
+    
+    const ImageToSave = new TwoCards({
+      imageDetail: imageDetails,
+    });
+    const DocToSave = await ImageToSave.save();
+    res.json({
+      Message: "Api of Image Is Working",
+      Data: true,
+      Result: DocToSave,
+    });
+  } catch (error) {
+    res.json({
+      Message: error.message,
+      Data: false,
+      Result: null,
+    });
+  }
+};
+
+
+  const GetTwocardsApi = async (req,res) =>{
+   try {
+    const GetTwoImage = await TwoCards.find();
+    res.json({
+      message:"Api of Get working successfullyy!!!",
+      Data:true,
+      Result:GetTwoImage
+    })
+   } catch (error) {
+      res.json({
+        message:error.message,
+        Data:false,
+        Result:null
+      })
+   }
+  }
+
+
+
+  const hardDeleteApiOfFourCards =async (req,res) =>{
+      try {
+        
+      } catch (error) {
+        
+      }
+  }
 module.exports={
     HeroImageApi,
     FourCardsApi,
@@ -252,6 +379,8 @@ module.exports={
     GetHeroImage,
     HardDeletHeroImage,
     HeroImageGetById,
-    GetFourCardsById
+    GetFourCardsById,
+    TwoImagesApi,
+    GetTwocardsApi
     
 }

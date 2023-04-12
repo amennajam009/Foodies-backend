@@ -13,7 +13,7 @@ mongoose
     // ignoreUndefined: true,
   )
   // eslint-disable-next-line no-console
-  .then(() => console.log('We are connected with database :)' )) //Success
+  .then(() => console.log('We are connected with database I love you fazi you are mine forever' )) //Success
   .catch((err) => {
     // eslint-disable-next-line no-console
     console.log('DB Connection Error :( -------> ', err); //Failed

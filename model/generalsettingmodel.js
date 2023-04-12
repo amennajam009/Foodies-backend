@@ -41,7 +41,7 @@ const FourCards = new mongoose.Schema({
     HeadingFour: {type:String, required:true },
     descriptionFour:{type:String, required:true},
     status: { type: Number, default: 1 },
-    ImageDetail: [
+    ImageDetails: [
         {
             ImageUrl: { type: String  },
             ImageName: { type: String  },
@@ -55,17 +55,31 @@ const FourCards = new mongoose.Schema({
 },
  { timestamps: true })
 
+// Twocards Model
+ const TwoCards = new mongoose.Schema({
+    imageDetail: [
+        {
+            imageUrl: { type: String },
+            imageName: { type: String },
+            imageMimeType: { type: String },
+        }
+    ],
+    status: { type: Number, default: 1 },
+    CreatedDate: {
+        type: String,
+        default: `${year}-${month}-${day}-${time}`,
+    }
+}, { timestamps: true })
 
 
- //Exporting The Schema
-// module.exports = mongoose.model('HeroImage', HeroImage);
-// module.exports = mongoose.model('FourCards', FourCards)
+
 
 
 
 module.exports = {
     HeroImage: mongoose.model('HeroImage', HeroImage),
     FourCards: mongoose.model('FourCards', FourCards),
+    TwoCards:  mongoose.model('TwoCards', TwoCards)
   
   };
 
