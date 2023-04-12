@@ -31,7 +31,7 @@ Router.delete("/Harddelete/:_id",Harddelete);
 Router.delete("/HardDeletHeroImage/:_id",HardDeletHeroImage);
 Router.get('/HeroImageGetById/:_id',HeroImageGetById);
 Router.get('/GetFourCardsById/:_id',GetFourCardsById);
-Router.post('/TwoImagesApi',TwoImageMiddle.array('images',20),TwoImagesApi);
+Router.post('/TwoImagesApi',TwoImageMiddle.single('images'),TwoImagesApi);
 Router.get('/GetTwocardsApi',GetTwocardsApi);
 
 

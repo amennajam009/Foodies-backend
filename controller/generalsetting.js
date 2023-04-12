@@ -272,76 +272,71 @@ const GetHeroImage =async (req,res) =>{
        }
   }
 
-  // const TwoImagesApi = async (req, res) => {
-  //   try {
-  //     let ImageDetails = [];
-                             
-  //     // Define ImageDetails array here
-      
-  //     req.files.forEach((element) => {
-  //       const { filename, orignalname, mimetype } = element;
-  //       ImageDetails.push({
-  //         ImageUrl: `./assets/Twoimage/${filename}`,
-  //         ImageName: orignalname,
-  //         ImageMimeType: mimetype,
-  //       });
-  //     });
-  //     console.log(req.files)
-      
-  //     const ImageToSave = new TwoCards({
-  //       ImageDetail: ImageDetails,
-  //     });
-  //     const DocToSave = await ImageToSave.save();
-  //     res.json({
-  //       Message: "Api of Image Is Working",
-  //       Data: true,
-  //       Result: DocToSave,
-  //     });
-  //   } catch (error) {
-  //     res.json({
-  //       Message: error.message,
-  //       Data: false,
-  //       Result: null,
-  //     });
-  //   }
-  // };
-  
+
 
   
+// const TwoImagesApi = async (req, res) => {
+//   try {
+//     let imageDetails = [];
+                           
+//     // Define ImageDetails array here
+    
+//     req.files.forEach((element) => {
+//       const { filename, orignalname, mimetype } = element;
+//       imageDetails.push({
+//         imageUrl: `./assets/Twoimage/${filename}`,
+//         imageName: orignalname,
+//         imageMimeType: mimetype,
+//       });
+//     });
+//     console.log(req.files)
+    
+//     const ImageToSave = new TwoCards({
+//       imageDetail: imageDetails,
+//     });
+//     const DocToSave = await ImageToSave.save();
+//     res.json({
+//       Message: "Api of Image Is Working",
+//       Data: true,
+//       Result: DocToSave,
+//     });
+//   } catch (error) {
+//     res.json({
+//       Message: error.message,
+//       Data: false,
+//       Result: null,
+//     });
+//   }
+// };
+
 const TwoImagesApi = async (req, res) => {
   try {
-    let imageDetails = [];
-                           
-    // Define ImageDetails array here
-    
-    req.files.forEach((element) => {
-      const { filename, orignalname, mimetype } = element;
-      imageDetails.push({
-        imageUrl: `./assets/Twoimage/${filename}`,
-        imageName: orignalname,
+    const { file } = req;
+    if (!file) {
+      throw new Error('File not found in request');
+    }
+    const { originalname, mimetype } = file;
+    const docToCreate = new TwoCards({
+      imageDetail: {
+        imageUrl: `./assets/Twoimage/${file.filename}`,
+        imageName: originalname,
         imageMimeType: mimetype,
-      });
+      },
     });
-    console.log(req.files)
-    
-    const ImageToSave = new TwoCards({
-      imageDetail: imageDetails,
-    });
-    const DocToSave = await ImageToSave.save();
+    const docToSave = await docToCreate.save();
     res.json({
-      Message: "Api of Image Is Working",
-      Data: true,
-      Result: DocToSave,
+      message: "Card Saved !!!",
+      data: true,
+      result: docToSave,
     });
   } catch (error) {
     res.json({
-      Message: error.message,
-      Data: false,
-      Result: null,
+      message: error.message,
+      data: false,
+      result: null,
     });
   }
 };
-
 
   const GetTwocardsApi = async (req,res) =>{
    try {

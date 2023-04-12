@@ -23,7 +23,7 @@ const hashFunc = (fileName) => {
 let TwoImageMiddle = multer({
     storage: multer.diskStorage({
         destination: (req, next, cb) => {
-            let path = `./assets/Twoimage`;
+            let path = `./assets/Twoimage/`;
             if (!fs.existsSync(path)) {
                 fs.mkdirSync(path, function (err, res) {
                     if (err) {
