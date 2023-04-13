@@ -255,7 +255,7 @@ const GetHeroImage =async (req,res) =>{
   const GetFourCardsById =async (req,res) =>{
        try {
         const Id = req.params._id;
-        const GetById = await FourCards.findOne(
+        const GetById = await homeCardModel.findOne(
           {_id:Id}
         );
         res.json({
