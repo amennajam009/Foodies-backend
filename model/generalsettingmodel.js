@@ -72,6 +72,12 @@ const FourCards = new mongoose.Schema({
 }, { timestamps: true })
 
 
+// frequently Asked Questions 
+const FrequentlyAskedQue = new mongoose.Schema({
+    headingQue : { type:String, required:true },
+    AnswerQue:{type:String, required:true},
+}, { timestamps: true })
+
 
 
 
@@ -79,7 +85,8 @@ const FourCards = new mongoose.Schema({
 module.exports = {
     HeroImage: mongoose.model('HeroImage', HeroImage),
     FourCards: mongoose.model('FourCards', FourCards),
-    TwoCards:  mongoose.model('TwoCards', TwoCards)
+    TwoCards:  mongoose.model('TwoCards', TwoCards),
+    FrequentlyAskedQue: mongoose.model('FrequentlyAskedQue',FrequentlyAskedQue)
   
   };
 
