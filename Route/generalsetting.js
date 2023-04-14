@@ -14,7 +14,9 @@ const { HeroImageApi,
         HeroImageGetById,
         GetFourCardsById,
         TwoImagesApi,
-        GetTwocardsApi
+        GetTwocardsApi,
+        GetTwocardsById,
+        HardDeleteTwoimage
     
          } = require("../controller/generalsetting");
 
@@ -33,6 +35,8 @@ Router.get('/HeroImageGetById/:_id',HeroImageGetById);
 Router.get('/GetFourCardsById/:_id',GetFourCardsById);
 Router.post('/TwoImagesApi',TwoImageMiddle.single('images'),TwoImagesApi);
 Router.get('/GetTwocardsApi',GetTwocardsApi);
+Router.get('/GetTwocardsById/:_id',GetTwocardsById);
+Router.delete('/HardDeleteTwoimage/:_id',HardDeleteTwoimage)
 
 
 

@@ -1,6 +1,8 @@
 const {HeroImage,FourCards, TwoCards} = require("../model/generalsettingmodel");
 const  homeCardModel  = require('../model/homePagecards')
 const fs=require('fs');
+const path = require('path');
+const fse = require('fs-extra');
 // const model = require ("../middleware/Newmodel")
 
 
@@ -274,40 +276,6 @@ const GetHeroImage =async (req,res) =>{
 
 
 
-  
-// const TwoImagesApi = async (req, res) => {
-//   try {
-//     let imageDetails = [];
-                           
-//     // Define ImageDetails array here
-    
-//     req.files.forEach((element) => {
-//       const { filename, orignalname, mimetype } = element;
-//       imageDetails.push({
-//         imageUrl: `./assets/Twoimage/${filename}`,
-//         imageName: orignalname,
-//         imageMimeType: mimetype,
-//       });
-//     });
-//     console.log(req.files)
-    
-//     const ImageToSave = new TwoCards({
-//       imageDetail: imageDetails,
-//     });
-//     const DocToSave = await ImageToSave.save();
-//     res.json({
-//       Message: "Api of Image Is Working",
-//       Data: true,
-//       Result: DocToSave,
-//     });
-//   } catch (error) {
-//     res.json({
-//       Message: error.message,
-//       Data: false,
-//       Result: null,
-//     });
-//   }
-// };
 
 const TwoImagesApi = async (req, res) => {
   try {
@@ -354,16 +322,90 @@ const TwoImagesApi = async (req, res) => {
       })
    }
   }
-
-
-
-  const hardDeleteApiOfFourCards =async (req,res) =>{
-      try {
-        
-      } catch (error) {
-        
-      }
+ 
+  const GetTwocardsById =async (req,res) =>{
+    try {
+      const Id = req.params._id;
+      const FindById = await TwoCards.findOne(
+        {_id:Id}
+      );
+      res.json({
+        message:"Api Of GetTwocards works successfully!!",
+        Data:true,
+        Result:FindById
+      })
+    } catch (error) {
+      res.json({
+        message:error.message,
+        Data:false,
+        Result:null
+      })
+    }
   }
+
+  // const  HardDeleteTwoimage = async (req, res) => {
+  //   try {
+  //     const { _id } = req.params;
+  
+  //     const docToDelete = await TwoCards.findById(_id);
+  //     if (!docToDelete) {
+  //       return res.status(404).json({
+  //         message: 'Card not found',
+  //         data: false,
+  //         result: null,
+  //       });
+  //     }
+  
+  //     const imagePath = `./${docToDelete.imageDetail.imageUrl}`;
+  //     fs.unlinkSync(imagePath);
+  //     fs.rmdirSync(`./assets/Twoimage/`);
+  
+  //     const hardDeleteResult = await TwoCards.deleteOne({ _id });
+  
+  //     res.json({
+  //       message: 'Card deleted successfully',
+  //       data: true,
+  //       result: hardDeleteResult,
+  //     });
+  //   } catch (error) {
+  //     res.status(500).json({
+  //       message: error.message,
+  //       data: false,
+  //       result: null,
+  //     });
+  //   }
+  // };
+
+
+  const HardDeleteTwoimage = async(req,res)=>{
+    try {
+      const Id = req.params._id;
+      const DocToHardDel = await TwoCards.findOne({_id: Id});
+      if (!!DocToHardDel) {
+        const HardDelById = await TwoCards.deleteOne({_id: DocToHardDel._id});
+        DocToHardDel.imageDetail.forEach((file) => {
+          fs.unlinkSync(`${file.imageUrl}`);
+        });
+        fs.rmdirSync(`./assets/Twoimage`);
+        res.json({
+          message: "Api of HardDelete Is Working Successfully!!",
+          Data: true,
+          Result: HardDelById
+        });
+      }
+    } catch (error) {
+      res.json({
+        message:error.message,
+        Data:false,
+        Result:null
+      })
+    }
+}
+  
+  
+  
+  
+  
 module.exports={
     HeroImageApi,
     FourCardsApi,
@@ -376,6 +418,8 @@ module.exports={
     HeroImageGetById,
     GetFourCardsById,
     TwoImagesApi,
-    GetTwocardsApi
+    GetTwocardsApi,
+    GetTwocardsById,
+    HardDeleteTwoimage
     
 }
