@@ -17,7 +17,8 @@ const { HeroImageApi,
         GetTwocardsApi,
         GetTwocardsById,
         HardDeleteTwoimage,
-        FrequentlyAskedQestions
+        FrequentlyAskedQestions,
+        GetFrequentlyAskedQestions
     
          } = require("../controller/generalsetting");
 
@@ -38,7 +39,8 @@ Router.post('/TwoImagesApi',TwoImageMiddle.single('images'),TwoImagesApi);
 Router.get('/GetTwocardsApi',GetTwocardsApi);
 Router.get('/GetTwocardsById/:_id',GetTwocardsById);
 Router.delete('/HardDeleteTwoimage/:_id',HardDeleteTwoimage);
-Router.post('/FrequentlyAskedQestions',FrequentlyAskedQestions)
+Router.post('/FrequentlyAskedQestions',FrequentlyAskedQestions);
+Router.get('/GetFrequentlyAskedQestions',GetFrequentlyAskedQestions)
 
 
 

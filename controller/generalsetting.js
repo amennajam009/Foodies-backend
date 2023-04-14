@@ -367,7 +367,24 @@ const TwoImagesApi = async (req, res) => {
           Result:null
         })
       }
- }  
+ } 
+ 
+ const GetFrequentlyAskedQestions =async (req,res) =>{
+        try {
+          const DocToGet = await FrequentlyAskedQue.find().lean();
+          res.json({
+            message:"Api is Working Succfully!!",
+            Data:true,
+            Result:DocToGet
+          })
+        } catch (error) {
+          res.json({
+            message:error.message,
+            Data:false,
+            Result:null
+          })
+        }
+ }
   
   
 module.exports={
@@ -385,6 +402,7 @@ module.exports={
     GetTwocardsApi,
     GetTwocardsById,
     HardDeleteTwoimage,
-    FrequentlyAskedQestions
+    FrequentlyAskedQestions,
+    GetFrequentlyAskedQestions
     
 }
