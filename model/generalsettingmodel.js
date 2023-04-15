@@ -76,6 +76,7 @@ const FourCards = new mongoose.Schema({
 const FrequentlyAskedQue = new mongoose.Schema({
     headingQue : { type:String, required:true },
     AnswerQue:{type:String, required:true},
+    status: { type: Number, default: 1 },
 }, { timestamps: true })
 
 

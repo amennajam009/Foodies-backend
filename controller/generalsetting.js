@@ -404,7 +404,31 @@ const TwoImagesApi = async (req, res) => {
         })
       }
  }
-  
+ 
+const HardDeletFrequentlyAskedQue =async (req,res) =>{
+    try {
+          const Id = req.params._id;
+          const DocToFind = await FrequentlyAskedQue.findOne(
+            {_id:Id}
+          );
+          if(!!DocToFind){
+           const DocToDel = await FrequentlyAskedQue.deleteOne(
+            {_id:DocToFind._id}
+           ); 
+           res.json({
+            message:"Api of hard-delete working successfulyy!!",
+            Data:true,
+            Result:DocToDel
+          }) 
+          }    
+    } catch (error) {
+      res.json({
+        message:error.message,
+        Data:false,
+        Result:null
+      })
+    }
+} 
   
 module.exports={
     HeroImageApi,
@@ -423,6 +447,7 @@ module.exports={
     HardDeleteTwoimage,
     FrequentlyAskedQestions,
     GetFrequentlyAskedQestions,
-    GetFrequeById
+    GetFrequeById,
+    HardDeletFrequentlyAskedQue
     
 }

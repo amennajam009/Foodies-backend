@@ -19,7 +19,8 @@ const { HeroImageApi,
         HardDeleteTwoimage,
         FrequentlyAskedQestions,
         GetFrequentlyAskedQestions,
-        GetFrequeById
+        GetFrequeById,
+        HardDeletFrequentlyAskedQue
     
          } = require("../controller/generalsetting");
 
@@ -44,6 +45,7 @@ Router.post('/FrequentlyAskedQestions',FrequentlyAskedQestions);
 Router.get('/GetFrequentlyAskedQestions',GetFrequentlyAskedQestions);
 // already likh di hai kl k liye icko bss analytics may implement karwana hia
 Router.get('/GetFrequeById/:_id',GetFrequeById);
+Router.delete('/HardDeletFrequentlyAskedQue/:_id',HardDeletFrequentlyAskedQue)
 
 
 
