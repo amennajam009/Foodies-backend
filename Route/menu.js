@@ -12,7 +12,7 @@ const {starterApi,
 
 //Routes
 Router.post('/starterApi',FoodCards.single('Foodcard-image'),starterApi);
-Router.get('./GetAllDataOfstarterApi',GetAllDataOfstarterApi)
+Router.get('/GetAllDataOfstarterApi',GetAllDataOfstarterApi)
 
 
 
