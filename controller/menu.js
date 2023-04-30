@@ -49,7 +49,7 @@ const GetAllDataOfstarterApi =async (req,res) =>{
 const GetDataOfstarterApiById =async(req,res) =>{
     try {
         const Id = req.params._id;
-        const DocToFindById = await StarterCardModel.findById(
+        const DocToFindById = await StarterCardModel.findOne(
             {_id:Id}
         );
         res.json({
