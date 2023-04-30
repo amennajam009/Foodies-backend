@@ -2,7 +2,8 @@ const express = require('express');
 const Router =  express.Router();
 const {FoodCards} = require ('../middleware/starterimage');
 const {starterApi,
-    GetAllDataOfstarterApi
+    GetAllDataOfstarterApi,
+    GetDataOfstarterApiById
 } = require ('../controller/menu');
 
 
@@ -13,7 +14,7 @@ const {starterApi,
 //Routes
 Router.post('/starterApi',FoodCards.single('Foodcard-image'),starterApi);
 Router.get('/GetAllDataOfstarterApi',GetAllDataOfstarterApi)
-
+Router.get('/GetDataOfstarterApiById/:_id',GetDataOfstarterApiById)
 
 
 module.exports = Router;

@@ -45,7 +45,29 @@ const GetAllDataOfstarterApi =async (req,res) =>{
     }
 }
 
+
+const GetDataOfstarterApiById =async(req,res) =>{
+    try {
+        const Id = req.params._id;
+        const DocToFindById = await StarterCardModel.findById(
+            {_id:Id}
+        );
+        res.json({
+            message:'Api Works Succesfully!',
+            Data:true,
+            Result:DocToFindById
+        })
+    } catch (error) {
+        res.json({
+            message:error.message,
+            Data:false,
+            Result:null
+        })
+    }
+}
+
 module.exports={
     starterApi,
     GetAllDataOfstarterApi,
+    GetDataOfstarterApiById
 }
