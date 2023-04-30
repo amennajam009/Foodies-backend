@@ -1,7 +1,9 @@
 const express = require('express');
 const Router =  express.Router();
 const {FoodCards} = require ('../middleware/starterimage');
-const {starterApi} = require ('../controller/menu');
+const {starterApi,
+    GetAllDataOfstarterApi
+} = require ('../controller/menu');
 
 
 
@@ -9,8 +11,8 @@ const {starterApi} = require ('../controller/menu');
 
 
 //Routes
-Router.post('/starterApi',FoodCards.single('card-image'),starterApi);
-
+Router.post('/starterApi',FoodCards.single('Foodcard-image'),starterApi);
+Router.get('./GetAllDataOfstarterApi',GetAllDataOfstarterApi)
 
 
 

@@ -28,6 +28,24 @@ const starterApi = async (req,res) =>{
 }
 
 
+const GetAllDataOfstarterApi =async (req,res) =>{
+    try {
+        const GetAlldoc = await StarterCardModel.find();
+        res.json({
+            message:'Api of Get all Data is Working Successfulyy!!',
+            Data:true,
+            Result:GetAlldoc
+        })
+    } catch (error) {
+        res.json({
+            message:error.message,
+            Data:false,
+            Result:null
+        })
+    }
+}
+
 module.exports={
-    starterApi
+    starterApi,
+    GetAllDataOfstarterApi,
 }
