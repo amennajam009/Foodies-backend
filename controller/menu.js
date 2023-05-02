@@ -66,6 +66,8 @@ const GetDataOfstarterApiById =async(req,res) =>{
     }
 }
 
+
+
 module.exports={
     starterApi,
     GetAllDataOfstarterApi,
