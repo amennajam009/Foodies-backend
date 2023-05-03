@@ -4,7 +4,8 @@ const {FoodCards} = require ('../middleware/starterimage');
 const {starterApi,
     GetAllDataOfstarterApi,
     GetDataOfstarterApiById,
-    HardDeletestarterApi
+    HardDeletestarterApi,
+    BreakFastPostApi
 } = require ('../controller/menu');
 
 
@@ -16,7 +17,8 @@ const {starterApi,
 Router.post('/starterApi',FoodCards.single('Foodcard-image'),starterApi);
 Router.get('/GetAllDataOfstarterApi',GetAllDataOfstarterApi)
 Router.get('/GetDataOfstarterApiById/:_id',GetDataOfstarterApiById);
-Router.delete('/HardDeletestarterApi/:_id',HardDeletestarterApi)
+Router.delete('/HardDeletestarterApi/:_id',HardDeletestarterApi);
+Router.post('/BreakFastPostApi',BreakFastPostApi)
 
 
 module.exports = Router;

@@ -1,4 +1,4 @@
-const  StarterCardModel  = require('../model/menu')
+const {StarterCardModel , BreakFastModel}  = require('../model/menu')
 const fs=require('fs');
 const path = require('path');
 
@@ -67,33 +67,6 @@ const GetDataOfstarterApiById =async(req,res) =>{
     }
 }
 
-// const HardDeletestarterApi =async (req,res) =>{
-//     try {
-//         const Id = req.params._id;
-//         const DocToFind = await StarterCardModel.findOne({_id:Id});
-//         let DocToDel = null;
-//         if(!!DocToFind){
-//           const DocToDel = await StarterCardModel.deleteOne(
-//          {_id:DocToFind._id});
-//           DocToDel.imageDetails.forEach((file) => {
-//             fs.unlinkSync(`${file.imageUrl}`);
-//           });
-//           fs.rmdirSync(`./assets/Menu/Starter/${file.filename}`);  
-//         }
-//         res.json({
-//             message:'Api Works Successfulyy!!',
-//             Data:true,
-//             Result:DocToDel
-//         })
-//     } catch (error) {
-//         res.json({
-//             message:error.message,
-//             Data:false,
-//             Result:null
-//         })
-//     }
-// }
-
 const HardDeletestarterApi = async (req, res) => {
     try {
       const { _id } = req.params;
@@ -127,9 +100,38 @@ const HardDeletestarterApi = async (req, res) => {
     }
   };
 
+
+
+  // breakfast Api's 
+  const BreakFastPostApi = async (req,res) =>{
+    try {
+        const {FoodName,FoodDescription,FoodPrice} = req.body;
+        const MappingOfstarterApi = new BreakFastModel({
+            FoodName,FoodDescription,FoodPrice,
+            imageDetails: {
+                imageUrl: `assets/Menu/Breakfast/${FoodName}/${req.file.filename}`,
+                imageName: req.file.originalname,
+                imageMimeType: req.file.mimetype,
+            } 
+        })
+        const DoctToSave = await MappingOfstarterApi.save();
+        res.json({
+            message:'Api Working Successfully!!',
+            Data:true,
+            Result:DoctToSave
+        })
+    } catch (error) {
+        res.json({
+            message:error.message,
+            Data:false,
+            Result:null
+        })
+    }
+}
 module.exports={
     starterApi,
     GetAllDataOfstarterApi,
     GetDataOfstarterApiById,
-    HardDeletestarterApi
+    HardDeletestarterApi,
+    BreakFastPostApi
 }

@@ -14,7 +14,33 @@ const StarterModel = new mongoose.Schema({
         }
     
 },
- { timestamps: true })
+ { timestamps: true });
+
+ const BreakFastModel = new mongoose.Schema({
+    FoodName : { type:String, required:true },
+    FoodDescription:{type:String, required:true},
+    FoodPrice:{type:Number, require:true},
+    status: { type: Number, default: 1 },
+    imageDetails: 
+        {
+            imageUrl: { type: String  },
+            imageName: { type: String  },
+            imageMimeType: { type: String},
+        }
+    
+},
+ { timestamps: true });
+
 
  
  module.exports = mongoose.model('StarterCollection', StarterModel); 
+
+ module.exports = {
+    StarterModel:mongoose.model('StarterCollection',StarterModel),
+    BreakFastModel:mongoose.model('BreakFastCollection', BreakFastModel),
+    // FourCards: mongoose.model('FourCards', FourCards),
+    // TwoCards:  mongoose.model('TwoCards', TwoCards),
+    // FrequentlyAskedQue: mongoose.model('FrequentlyAskedQue',FrequentlyAskedQue)
+  
+  };
+
