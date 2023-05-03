@@ -1,6 +1,7 @@
 const express = require('express');
 const Router =  express.Router();
 const {FoodCards} = require ('../middleware/starterimage');
+const {BreakfastCards}=require('../middleware/breakfast');
 const {starterApi,
     GetAllDataOfstarterApi,
     GetDataOfstarterApiById,
@@ -18,7 +19,7 @@ Router.post('/starterApi',FoodCards.single('Foodcard-image'),starterApi);
 Router.get('/GetAllDataOfstarterApi',GetAllDataOfstarterApi)
 Router.get('/GetDataOfstarterApiById/:_id',GetDataOfstarterApiById);
 Router.delete('/HardDeletestarterApi/:_id',HardDeletestarterApi);
-Router.post('/BreakFastPostApi',BreakFastPostApi)
+Router.post('/BreakFastPostApi',BreakfastCards.single('Foodcard-image'),BreakFastPostApi)
 
 
 module.exports = Router;
