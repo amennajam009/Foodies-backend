@@ -1,11 +1,11 @@
-const {StarterCardModel , BreakFastModel}  = require('../model/menu')
+const {StarterModel, BreakFastModel}  = require('../model/menu')
 const fs=require('fs');
 const path = require('path');
 
 const starterApi = async (req,res) =>{
     try {
         const {FoodName,FoodDescription,FoodPrice} = req.body;
-        const MappingOfstarterApi = new StarterCardModel({
+        const MappingOfstarterApi = new StarterModel({
             FoodName,FoodDescription,FoodPrice,
             imageDetails: {
                 imageUrl: `assets/Menu/Starter/${FoodName}/${req.file.filename}`,
@@ -31,7 +31,7 @@ const starterApi = async (req,res) =>{
 
 const GetAllDataOfstarterApi =async (req,res) =>{
     try {
-        const GetAlldoc = await StarterCardModel.find();
+        const GetAlldoc = await StarterModel.find();
         res.json({
             message:'Api of Get all Data is Working Successfulyy!!',
             Data:true,
@@ -50,7 +50,7 @@ const GetAllDataOfstarterApi =async (req,res) =>{
 const GetDataOfstarterApiById =async(req,res) =>{
     try {
         const Id = req.params._id;
-        const DocToFindById = await StarterCardModel.findOne(
+        const DocToFindById = await StarterModel.findOne(
             {_id:Id}
         );
         res.json({
@@ -71,7 +71,7 @@ const HardDeletestarterApi = async (req, res) => {
     try {
       const { _id } = req.params;
   
-      const docToDelete = await StarterCardModel.findById(_id);
+      const docToDelete = await StarterModel.findById(_id);
       if (!docToDelete) {
         return res.status(404).json({
           message: 'Card not found',
@@ -84,7 +84,7 @@ const HardDeletestarterApi = async (req, res) => {
       fs.unlinkSync(imagePath);
       fs.rmdirSync(`./assets/Menu/Starter/${docToDelete.FoodName}`);
   
-      const hardDeleteResult = await StarterCardModel.deleteOne({ _id });
+      const hardDeleteResult = await StarterModel.deleteOne({ _id });
   
       res.json({
         message: 'Card deleted successfully',

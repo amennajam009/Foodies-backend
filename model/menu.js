@@ -33,7 +33,7 @@ const StarterModel = new mongoose.Schema({
 
 
  
- module.exports = mongoose.model('StarterCollection', StarterModel); 
+//  module.exports = mongoose.model('StarterCollection', StarterModel); 
 
  module.exports = {
     StarterModel:mongoose.model('StarterCollection',StarterModel),
