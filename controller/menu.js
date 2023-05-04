@@ -145,11 +145,31 @@ const GetBreakfastAllApi =async (req,res) =>{
         })
     }
 }
+const GetBreakFastApiById =async(req,res) =>{
+    try {
+       const Id = req.params._id;
+       const GetDataById = await BreakFastModel.findById(
+        {_id:Id}
+       );
+       res.json({
+        message:'Api is Working Successfullyy!!',
+        Data:true,
+        Result:GetDataById
+       }) 
+    } catch (error) {
+        res.json({
+            message:error.message,
+            Data:false,
+            Result:null
+        })
+    }
+}
 module.exports={
     starterApi,
     GetAllDataOfstarterApi,
     GetDataOfstarterApiById,
     HardDeletestarterApi,
     BreakFastPostApi,
-    GetBreakfastAllApi
+    GetBreakfastAllApi,
+    GetBreakFastApiById
 }
