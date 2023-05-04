@@ -19,7 +19,7 @@ Router.post('/starterApi',FoodCards.single('Foodcard-image'),starterApi);
 Router.get('/GetAllDataOfstarterApi',GetAllDataOfstarterApi)
 Router.get('/GetDataOfstarterApiById/:_id',GetDataOfstarterApiById);
 Router.delete('/HardDeletestarterApi/:_id',HardDeletestarterApi);
-Router.post('/BreakFastPostApi',BreakfastCards.single('Foodcard-image'),BreakFastPostApi)
+Router.post('/BreakFastPostApi',BreakfastCards.single('breakcard-image'),BreakFastPostApi)
 
 
 module.exports = Router;
