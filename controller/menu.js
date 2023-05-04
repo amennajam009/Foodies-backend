@@ -128,10 +128,28 @@ const HardDeletestarterApi = async (req, res) => {
         })
     }
 }
+
+const GetBreakfastAllApi =async (req,res) =>{
+    try {
+        const DocToGet = await BreakFastModel.find();
+        res.json({
+            message:'Api Works Successfully!!',
+            Data:true,
+            Result:DocToGet
+        })
+    } catch (error) {
+        res.json({
+            message:error.message,
+            Data:false,
+            Result:null
+        })
+    }
+}
 module.exports={
     starterApi,
     GetAllDataOfstarterApi,
     GetDataOfstarterApiById,
     HardDeletestarterApi,
-    BreakFastPostApi
+    BreakFastPostApi,
+    GetBreakfastAllApi
 }

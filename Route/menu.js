@@ -6,7 +6,8 @@ const {starterApi,
     GetAllDataOfstarterApi,
     GetDataOfstarterApiById,
     HardDeletestarterApi,
-    BreakFastPostApi
+    BreakFastPostApi,
+    GetBreakfastAllApi
 } = require ('../controller/menu');
 
 
@@ -19,7 +20,8 @@ Router.post('/starterApi',FoodCards.single('Foodcard-image'),starterApi);
 Router.get('/GetAllDataOfstarterApi',GetAllDataOfstarterApi)
 Router.get('/GetDataOfstarterApiById/:_id',GetDataOfstarterApiById);
 Router.delete('/HardDeletestarterApi/:_id',HardDeletestarterApi);
-Router.post('/BreakFastPostApi',BreakfastCards.single('breakcard-image'),BreakFastPostApi)
+Router.post('/BreakFastPostApi',BreakfastCards.single('breakcard-image'),BreakFastPostApi);
+Router.get('/GetBreakfastAllApi',GetBreakfastAllApi);
 
 
 module.exports = Router;
