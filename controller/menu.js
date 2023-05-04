@@ -164,6 +164,39 @@ const GetBreakFastApiById =async(req,res) =>{
         })
     }
 }
+
+const HardDeletebreakfastApi = async (req, res) => {
+    try {
+      const { _id } = req.params;
+  
+      const docToDelete = await BreakFastModel.findById(_id);
+      if (!docToDelete) {
+        return res.status(404).json({
+          message: 'Card not found',
+          data: false,
+          result: null,
+        });
+      }
+  
+      const imagePath = `./${docToDelete.imageDetails.imageUrl}`;
+      fs.unlinkSync(imagePath);
+      fs.rmdirSync(`./assets/Menu/Breakfast/${docToDelete.FoodName}`);
+  
+      const hardDeleteResult = await BreakFastModel.deleteOne({ _id });
+  
+      res.json({
+        message: 'Card deleted successfully',
+        data: true,
+        result: hardDeleteResult,
+      });
+    } catch (error) {
+      res.status(500).json({
+        message: error.message,
+        data: false,
+        result: null,
+      });
+    }
+  };
 module.exports={
     starterApi,
     GetAllDataOfstarterApi,
@@ -171,5 +204,6 @@ module.exports={
     HardDeletestarterApi,
     BreakFastPostApi,
     GetBreakfastAllApi,
-    GetBreakFastApiById
+    GetBreakFastApiById,
+    HardDeletebreakfastApi
 }
