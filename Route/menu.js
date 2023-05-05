@@ -13,7 +13,8 @@ const {starterApi,
     HardDeletebreakfastApi,
     LunchPostApi,
     GetAlllunchApi,
-    GetlunchApiById
+    GetlunchApiById,
+    HardDeleteLunchApi
 } = require ('../controller/menu');
 
 
@@ -32,7 +33,8 @@ Router.get('/GetBreakFastApiById/:_id',GetBreakFastApiById);
 Router.delete('/HardDeletebreakfastApi/:_id',HardDeletebreakfastApi);
 Router.post('/LunchPostApi',lunchFoodCards.single('lunchcard-image'),LunchPostApi);
 Router.get('/GetAlllunchApi',GetAlllunchApi);
-Router.get('/GetlunchApiById/:_id',GetlunchApiById)
+Router.get('/GetlunchApiById/:_id',GetlunchApiById);
+Router.delete('/HardDeleteLunchApi/:_id',HardDeleteLunchApi);
 
 
 
