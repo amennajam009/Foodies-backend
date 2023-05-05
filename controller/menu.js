@@ -267,7 +267,7 @@ const HardDeleteLunchApi = async (req, res) => {
     try {
       const { _id } = req.params;
   
-      const docToDelete = await BreakFastModel.findById(_id);
+      const docToDelete = await LunchModel.findById(_id);
       if (!docToDelete) {
         return res.status(404).json({
           message: 'Card not found',
@@ -280,7 +280,7 @@ const HardDeleteLunchApi = async (req, res) => {
       fs.unlinkSync(imagePath);
       fs.rmdirSync(`./assets/Menu/lunch/${docToDelete.FoodName}`);
   
-      const hardDeleteResult = await BreakFastModel.deleteOne({ _id });
+      const hardDeleteResult = await LunchModel.deleteOne({ _id });
   
       res.json({
         message: 'Card deleted successfully',
