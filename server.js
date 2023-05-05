@@ -4,7 +4,11 @@ const path=require('path')
 const cors= require('cors')
 // const LoadMyEnviormentVariables = require('./configuration/LoadEnv-variable');
 const database = require("./configuration/config");
-
+// const twilio = require('twilio');
+// Add your Twilio account SID and auth token here
+// const accountSid = 'AC62eb350e0c37bde94c692dc2539c7ac2';
+// const authToken = 'e40ee93c57794a85fe5e997fc1b62944';
+// const client = new twilio(accountSid, authToken);
 
 
 
@@ -36,7 +40,7 @@ app.all('*', (req, res, next) => {
 
 const _Generalsetting = require("./Route/generalsetting");
 const _menu = require ("./Route/menu")
-
+const _WhatsApp = require('./Route/Whatsapp');
 
 
 
@@ -44,6 +48,7 @@ const _menu = require ("./Route/menu")
 // Routes
 app.use('/Generalsetting',_Generalsetting)
 app.use('/menu',_menu)
+app.use('/WhatsApp',_WhatsApp)
 
 // this is our error handling !!!!!!!
 app.use((req, res, next) => {
