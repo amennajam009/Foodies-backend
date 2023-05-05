@@ -2,6 +2,7 @@ const express = require('express');
 const Router =  express.Router();
 const {FoodCards} = require ('../middleware/starterimage');
 const {BreakfastCards}=require('../middleware/breakfast');
+const {lunchFoodCards} = require('../middleware/lunch')
 const {starterApi,
     GetAllDataOfstarterApi,
     GetDataOfstarterApiById,
@@ -9,7 +10,10 @@ const {starterApi,
     BreakFastPostApi,
     GetBreakfastAllApi,
     GetBreakFastApiById,
-    HardDeletebreakfastApi
+    HardDeletebreakfastApi,
+    LunchPostApi,
+    GetAlllunchApi,
+    GetlunchApiById
 } = require ('../controller/menu');
 
 
@@ -25,7 +29,10 @@ Router.delete('/HardDeletestarterApi/:_id',HardDeletestarterApi);
 Router.post('/BreakFastPostApi',BreakfastCards.single('breakcard-image'),BreakFastPostApi);
 Router.get('/GetBreakfastAllApi',GetBreakfastAllApi);
 Router.get('/GetBreakFastApiById/:_id',GetBreakFastApiById);
-Router.delete('/HardDeletebreakfastApi/:_id',HardDeletebreakfastApi)
+Router.delete('/HardDeletebreakfastApi/:_id',HardDeletebreakfastApi);
+Router.post('/LunchPostApi',lunchFoodCards.single('lunchcard-image'),LunchPostApi);
+Router.get('/GetAlllunchApi',GetAlllunchApi);
+Router.get('/GetlunchApiById/:_id',GetlunchApiById)
 
 
 

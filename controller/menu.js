@@ -1,4 +1,4 @@
-const {StarterModel, BreakFastModel}  = require('../model/menu')
+const {StarterModel, BreakFastModel , LunchModel }  = require('../model/menu')
 const fs=require('fs');
 const path = require('path');
 
@@ -197,6 +197,69 @@ const HardDeletebreakfastApi = async (req, res) => {
       });
     }
   };
+
+  const LunchPostApi = async (req,res) =>{
+    try {
+        const {FoodName,FoodDescription,FoodPrice} = req.body;
+        const MappingOfstarterApi = new LunchModel({
+            FoodName,FoodDescription,FoodPrice,
+            imageDetails: {
+                imageUrl: `assets/Menu/lunch/${FoodName}/${req.file.filename}`,
+                imageName: req.file.originalname,
+                imageMimeType: req.file.mimetype,
+            } 
+        })
+        const DoctToSave = await MappingOfstarterApi.save();
+        res.json({
+            message:'Api Working Successfully!!',
+            Data:true,
+            Result:DoctToSave
+        })
+    } catch (error) {
+        res.json({
+            message:error.message,
+            Data:false,
+            Result:null
+        })
+    }
+}
+
+const GetAlllunchApi =async (req,res) =>{
+    try {
+        const DocToGet = await LunchModel.find();
+        res.json({
+            message:'Api Works!!',
+            Data:true,
+            Result:DocToGet
+        })
+    } catch (error) {
+        res.json({
+            message:error.message,
+            Data:false,
+            Result:null
+        })
+    }
+}
+
+const GetlunchApiById =async (req,res) =>{
+   try {
+    const Id = req.params._id
+    const DocToFind = await LunchModel.findById(
+        {_id:Id}
+    );
+    res.json({
+        message:'API WORKS!!!',
+        Data:true,
+        Result:DocToFind
+    })
+   } catch (error) {
+    res.json({
+        message:error.message,
+        Data:false,
+        Result:null
+    })
+   }
+}
 module.exports={
     starterApi,
     GetAllDataOfstarterApi,
@@ -205,5 +268,8 @@ module.exports={
     BreakFastPostApi,
     GetBreakfastAllApi,
     GetBreakFastApiById,
-    HardDeletebreakfastApi
+    HardDeletebreakfastApi,
+    LunchPostApi,
+    GetAlllunchApi,
+    GetlunchApiById
 }
