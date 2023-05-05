@@ -10,12 +10,12 @@ const WhatsappApi = async (req, res) => {
 
         client.messages.create({
             from: 'whatsapp:+14155238886',
-            body:   '  ' ,
+            body: _SendMessage+''+_PhoneNumber,
             to: 'whatsapp:+923064484061'
         })
             .then(message => {
                 res.json({
-                    Message: "We Have Received your Message We will get back to you Soon on WhatsApp",
+                    Message: "Message Recieved!!",
                 })
             })
             .catch(error => {
