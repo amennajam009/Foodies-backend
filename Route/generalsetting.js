@@ -2,7 +2,9 @@ const express = require('express');
 const Router =  express.Router();
 const {FourCards} =require('../middleware/uploadimage');
 const {HeroImageMiddle} = require('../middleware/heroimage');
-const {TwoImageMiddle} = require('../middleware/TwoImages')
+const {TwoImageMiddle} = require('../middleware/TwoImages');
+const {threehomeCards} = require('../middleware/threehomecard');
+
 const { HeroImageApi,
         FourCardsApi,
         GetHeadingDescriptionFourCards,
@@ -20,7 +22,8 @@ const { HeroImageApi,
         FrequentlyAskedQestions,
         GetFrequentlyAskedQestions,
         GetFrequeById,
-        HardDeletFrequentlyAskedQue
+        HardDeletFrequentlyAskedQue,
+        HomeThreeCardsApi
     
          } = require("../controller/generalsetting");
 
@@ -45,7 +48,8 @@ Router.post('/FrequentlyAskedQestions',FrequentlyAskedQestions);
 Router.get('/GetFrequentlyAskedQestions',GetFrequentlyAskedQestions);
 // already likh di hai kl k liye icko bss analytics may implement karwana hia
 Router.get('/GetFrequeById/:_id',GetFrequeById);
-Router.delete('/HardDeletFrequentlyAskedQue/:_id',HardDeletFrequentlyAskedQue)
+Router.delete('/HardDeletFrequentlyAskedQue/:_id',HardDeletFrequentlyAskedQue);
+Router.post('/HomeThreeCardsApi',threehomeCards.single('threecard-image'),HomeThreeCardsApi)
 
 
 

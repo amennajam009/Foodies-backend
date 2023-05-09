@@ -480,6 +480,7 @@ module.exports={
     FrequentlyAskedQestions,
     GetFrequentlyAskedQestions,
     GetFrequeById,
-    HardDeletFrequentlyAskedQue
+    HardDeletFrequentlyAskedQue,
+    HomeThreeCardsApi
     
 }
