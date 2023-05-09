@@ -19,7 +19,7 @@ const HeroImage = new mongoose.Schema({
 
 // Three Cards 
 const ThreeHomeCards = new mongoose.Schema({
-    imageDetail: [
+    imageDetails: [
         {
             imageUrl: { type: String },
             imageName: { type: String },
@@ -30,7 +30,7 @@ const ThreeHomeCards = new mongoose.Schema({
     backflipCardHeading:{type:String, required:true},
     backflipCardDescription:{type:String, required:true},
     backflipCardDescription2:{type:String, required:true},
-    Price:{type:String, required:true},
+    Price:{type:Number, required:true},
     status: { type: Number, default: 1 },
   
 }, { timestamps: true })

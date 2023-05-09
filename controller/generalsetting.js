@@ -1,4 +1,4 @@
-const {HeroImage,FourCards, TwoCards ,FrequentlyAskedQue} = require("../model/generalsettingmodel");
+const {HeroImage,FourCards, TwoCards ,FrequentlyAskedQue , ThreeHomeCards} = require("../model/generalsettingmodel");
 const  homeCardModel  = require('../model/homePagecards')
 const fs=require('fs');
 const path = require('path');
@@ -40,6 +40,38 @@ const HeroImageApi = async (req, res) => {
     }
   };
 
+  // ThreeHome Cards
+  const HomeThreeCardsApi =async (req,res) =>{
+    try {
+         const {imageHeading,backflipCardHeading,backflipCardDescription,backflipCardDescription2,Price } = req.body; 
+         // const imageDetails = req.files.map(file => ({
+         // imageUrl: `assets/cards/${file.filename}`,
+         //   imageName: file.originalname,
+         //   imageMimeType: file.mimetype
+         // }));
+       
+         const docToCreate = new ThreeHomeCards({
+          imageHeading,backflipCardHeading,backflipCardDescription,backflipCardDescription2,Price, 
+           imageDetails: {
+             imageUrl: `assets/ThreehomeCards/${imageHeading}/${req.file.filename}`,
+             imageName: req.file.originalname,
+             imageMimeType: req.file.mimetype,
+         }
+         });
+         const docToSave = await docToCreate.save(); 
+         res.json({
+             message:"Card Saved !!!",
+             data:true,
+             result:docToSave 
+         })
+    } catch (error) {
+         res.json({
+             message:error.message,
+             data:false, 
+             result:null
+         })
+    }
+   }
 
   const FourCardsApi =async (req,res) =>{
    try {
