@@ -23,7 +23,8 @@ const { HeroImageApi,
         GetFrequentlyAskedQestions,
         GetFrequeById,
         HardDeletFrequentlyAskedQue,
-        HomeThreeCardsApi
+        HomeThreeCardsApi,
+        HomeThreeCardsGetAllData
     
          } = require("../controller/generalsetting");
 
@@ -49,7 +50,8 @@ Router.get('/GetFrequentlyAskedQestions',GetFrequentlyAskedQestions);
 // already likh di hai kl k liye icko bss analytics may implement karwana hia
 Router.get('/GetFrequeById/:_id',GetFrequeById);
 Router.delete('/HardDeletFrequentlyAskedQue/:_id',HardDeletFrequentlyAskedQue);
-Router.post('/HomeThreeCardsApi',threehomeCards.single('threecard-image'),HomeThreeCardsApi)
+Router.post('/HomeThreeCardsApi',threehomeCards.single('threecard-image'),HomeThreeCardsApi);
+Router.get('/HomeThreeCardsGetAllData',HomeThreeCardsGetAllData)
 
 
 

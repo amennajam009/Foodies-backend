@@ -68,6 +68,23 @@ const HeroImageApi = async (req, res) => {
     }
    }
 
+   const HomeThreeCardsGetAllData = async(req,res) =>{
+      try {
+        const DocToGet = await ThreeHomeCards.find();
+        res.json({
+          message:'Api Works Successfully!!',
+          Data:true,
+          Result:DocToGet
+        })
+      } catch (error) {
+        res.json({
+          message:error.message,
+          Data:false,
+          Result:null
+        })
+      }
+   }
+
   const FourCardsApi =async (req,res) =>{
    try {
         const { cardName,cardDescriptionFour } = req.body; 
@@ -476,6 +493,7 @@ module.exports={
     GetFrequentlyAskedQestions,
     GetFrequeById,
     HardDeletFrequentlyAskedQue,
-    HomeThreeCardsApi
+    HomeThreeCardsApi,
+    HomeThreeCardsGetAllData
     
 }
