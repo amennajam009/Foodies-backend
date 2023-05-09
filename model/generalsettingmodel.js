@@ -1,16 +1,6 @@
 //Dependencies
 const mongoose = require('mongoose');
 
-// Date
-// edhr humny new date assign krdi hai jo k user readability wali date dyga 
-const today = new Date();
-// edhr hum today uper wala ly gy or hum edhr today.getdate krein gy toh humry pas edhr date ajyegi
-const day = today.getDate();
-// edhr humny .getmonth() protype use kia hai or agay +1 lagaya hai kyu k yeh point may deta hai that' why +1 lagaya hai
-const month = today.getMonth() + 1; 
-const year = today.getFullYear(); //year
-const time = today.getTime(); //time 
-
 //Start Block Schema Creating
 const HeroImage = new mongoose.Schema({
     imageDetail: [
@@ -21,16 +11,31 @@ const HeroImage = new mongoose.Schema({
         }
     ],
     status: { type: Number, default: 1 },
-    CreatedDate: {
-        type: String,
-        default: `${year}-${month}-${day}-${time}`,
-    }
+  
 }, { timestamps: true })
 
 
 
-// FourCards
 
+// Three Cards 
+const ThreeHomeCards = new mongoose.Schema({
+    imageDetail: [
+        {
+            imageUrl: { type: String },
+            imageName: { type: String },
+            imageMimeType: { type: String },
+        }
+    ],
+    imageHeading:{type:String , required:true},
+    backflipCardHeading:{type:String, required:true},
+    backflipCardDescription:{type:String, required:true},
+    backflipCardDescription2:{type:String, required:true},
+    Price:{type:String, required:true},
+    status: { type: Number, default: 1 },
+  
+}, { timestamps: true })
+
+// FourCards
 const FourCards = new mongoose.Schema({
     Headingone: {type:String, required:true },
     descriptionone: {type:String, required:true },
@@ -48,10 +53,7 @@ const FourCards = new mongoose.Schema({
             ImageMimeType: { type: String},
         }
     ],
-    CreatedDate: {
-        type: String,
-        default: `${year}-${month}-${day}-${time}`,
-    }
+  
 },
  { timestamps: true })
 
@@ -65,10 +67,7 @@ const FourCards = new mongoose.Schema({
         }
     ],
     status: { type: Number, default: 1 },
-    CreatedDate: {
-        type: String,
-        default: `${year}-${month}-${day}-${time}`,
-    }
+   
 }, { timestamps: true })
 
 
@@ -87,7 +86,8 @@ module.exports = {
     HeroImage: mongoose.model('HeroImage', HeroImage),
     FourCards: mongoose.model('FourCards', FourCards),
     TwoCards:  mongoose.model('TwoCards', TwoCards),
-    FrequentlyAskedQue: mongoose.model('FrequentlyAskedQue',FrequentlyAskedQue)
+    FrequentlyAskedQue: mongoose.model('FrequentlyAskedQue',FrequentlyAskedQue), 
+    ThreeHomeCards: mongoose.model('ThreeHomeCardsCollection',ThreeHomeCards)
   
   };
 
