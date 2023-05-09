@@ -85,6 +85,40 @@ const HeroImageApi = async (req, res) => {
       }
    }
 
+
+   const Harddeletethreehomecard = async (req, res) => {
+    try {
+      const { _id } = req.params;
+  
+      const docToDelete = await ThreeHomeCards.findById(_id);
+      if (!docToDelete) {
+        return res.status(404).json({
+          message: 'Card not found',
+          data: false,
+          result: null,
+        });
+      }
+  
+      const imagePath = `./${docToDelete.imageDetails.imageUrl}`;
+      fs.unlinkSync(imagePath);
+      fs.rmdirSync(`./assets/ThreehomeCards/${docToDelete.imageHeading}`);
+  
+      const hardDeleteResult = await ThreeHomeCards.deleteOne({ _id });
+  
+      res.json({
+        message: 'Card deleted successfully',
+        data: true,
+        result: hardDeleteResult,
+      });
+    } catch (error) {
+      res.status(500).json({
+        message: error.message,
+        data: false,
+        result: null,
+      });
+    }
+  };
+
   const FourCardsApi =async (req,res) =>{
    try {
         const { cardName,cardDescriptionFour } = req.body; 
@@ -494,6 +528,7 @@ module.exports={
     GetFrequeById,
     HardDeletFrequentlyAskedQue,
     HomeThreeCardsApi,
-    HomeThreeCardsGetAllData
+    HomeThreeCardsGetAllData,
+    Harddeletethreehomecard
     
 }
