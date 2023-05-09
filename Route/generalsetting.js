@@ -25,7 +25,8 @@ const { HeroImageApi,
         HardDeletFrequentlyAskedQue,
         HomeThreeCardsApi,
         HomeThreeCardsGetAllData,
-        Harddeletethreehomecard
+        Harddeletethreehomecard,
+        GetThreehomeCardsById
     
          } = require("../controller/generalsetting");
 
@@ -53,7 +54,8 @@ Router.get('/GetFrequeById/:_id',GetFrequeById);
 Router.delete('/HardDeletFrequentlyAskedQue/:_id',HardDeletFrequentlyAskedQue);
 Router.post('/HomeThreeCardsApi',threehomeCards.single('threecard-image'),HomeThreeCardsApi);
 Router.get('/HomeThreeCardsGetAllData',HomeThreeCardsGetAllData);
-Router.delete('/Harddeletethreehomecard/:_id',Harddeletethreehomecard)
+Router.delete('/Harddeletethreehomecard/:_id',Harddeletethreehomecard);
+Router.get('/GetThreehomeCardsById/:_id',GetThreehomeCardsById)
 
 
 
