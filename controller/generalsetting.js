@@ -43,13 +43,8 @@ const HeroImageApi = async (req, res) => {
   // ThreeHome Cards
   const HomeThreeCardsApi =async (req,res) =>{
     try {
-         const {imageHeading,backflipCardHeading,backflipCardDescription,backflipCardDescription2,Price } = req.body; 
-         // const imageDetails = req.files.map(file => ({
-         // imageUrl: `assets/cards/${file.filename}`,
-         //   imageName: file.originalname,
-         //   imageMimeType: file.mimetype
-         // }));
-       
+         const {imageHeading,backflipCardHeading,backflipCardDescription,backflipCardDescription2,Price} = req.body; 
+        
          const docToCreate = new ThreeHomeCards({
           imageHeading,backflipCardHeading,backflipCardDescription,backflipCardDescription2,Price, 
            imageDetails: {
