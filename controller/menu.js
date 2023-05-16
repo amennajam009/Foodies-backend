@@ -1,4 +1,4 @@
-const {StarterModel, BreakFastModel , LunchModel }  = require('../model/menu')
+const {StarterModel, BreakFastModel , LunchModel ,TesatingModel}  = require('../model/menu')
 const fs=require('fs');
 const path = require('path');
 
@@ -295,6 +295,8 @@ const HardDeleteLunchApi = async (req, res) => {
       });
     }
   };
+
+
 module.exports={
     starterApi,
     GetAllDataOfstarterApi,
@@ -307,5 +309,6 @@ module.exports={
     LunchPostApi,
     GetAlllunchApi,
     GetlunchApiById,
-    HardDeleteLunchApi
+    HardDeleteLunchApi,
+   
 }
