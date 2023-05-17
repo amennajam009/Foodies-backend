@@ -363,6 +363,39 @@ const GetpopularApiById = async(req,res) =>{
     }
 }
 
+const HardDeletepopularApi = async (req, res) => {
+    try {
+      const { _id } = req.params;
+  
+      const docToDelete = await PopularFoodModel.findById(_id);
+      if (!docToDelete) {
+        return res.status(404).json({
+          message: 'Card not found',
+          data: false,
+          result: null,
+        });
+      }
+  
+      const imagePath = `./${docToDelete.imageDetails.imageUrl}`;
+      fs.unlinkSync(imagePath);
+      fs.rmdirSync(`./assets/popularFood/${docToDelete.CardHeading}`);
+  
+      const hardDeleteResult = await PopularFoodModel.deleteOne({ _id });
+  
+      res.json({
+        message: 'Card deleted successfully',
+        data: true,
+        result: hardDeleteResult,
+      });
+    } catch (error) {
+      res.status(500).json({
+        message: error.message,
+        data: false,
+        result: null,
+      });
+    }
+  };
+
 module.exports={
     starterApi,
     GetAllDataOfstarterApi,
@@ -378,6 +411,7 @@ module.exports={
     HardDeleteLunchApi,
     PopularFoodApi,
     Getpopularapi,
-    GetpopularApiById
+    GetpopularApiById,
+    HardDeletepopularApi
    
 }
