@@ -1,4 +1,4 @@
-const {StarterModel, BreakFastModel , LunchModel ,TesatingModel}  = require('../model/menu')
+const {StarterModel, BreakFastModel , LunchModel , PopularFoodModel}  = require('../model/menu')
 const fs=require('fs');
 const path = require('path');
 
@@ -297,6 +297,34 @@ const HardDeleteLunchApi = async (req, res) => {
   };
 
 
+
+ 
+  const PopularFoodApi = async (req,res) =>{
+    try {
+        const {CardHeading,CardDescription} = req.body;
+        const MappingOfpopularfoodApi = new PopularFoodModel({
+            CardHeading,CardDescription,
+            imageDetails: {
+                imageUrl: `assets/popularFood/${CardHeading}/${req.file.filename}`,
+                imageName: req.file.originalname,
+                imageMimeType: req.file.mimetype,
+            } 
+        })
+        const DoctToSave = await MappingOfpopularfoodApi.save();
+        res.json({
+            message:'Api Working Successfully!!',
+            Data:true,
+            Result:DoctToSave
+        })
+    } catch (error) {
+        res.json({
+            message:error.message,
+            Data:false,
+            Result:null
+        })
+    }
+}
+
 module.exports={
     starterApi,
     GetAllDataOfstarterApi,
@@ -310,5 +338,6 @@ module.exports={
     GetAlllunchApi,
     GetlunchApiById,
     HardDeleteLunchApi,
+    PopularFoodApi
    
 }
