@@ -325,6 +325,24 @@ const HardDeleteLunchApi = async (req, res) => {
     }
 }
 
+const Getpopularapi = async (req,res) =>{
+ try {
+    const GetpopularFoodApi = await PopularFoodModel.find();
+    res.json({
+        message:'API works!!',
+        Data:true,
+        Result:GetpopularFoodApi
+
+    })
+ } catch (error) {
+    res.json({
+        message:error.message,
+        Data:false,
+        Result:null
+    })
+ }
+}
+
 module.exports={
     starterApi,
     GetAllDataOfstarterApi,
@@ -338,6 +356,7 @@ module.exports={
     GetAlllunchApi,
     GetlunchApiById,
     HardDeleteLunchApi,
-    PopularFoodApi
+    PopularFoodApi,
+    Getpopularapi
    
 }
