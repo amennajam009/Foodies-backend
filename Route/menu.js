@@ -17,7 +17,8 @@ const {starterApi,
     GetlunchApiById,
     HardDeleteLunchApi,
     PopularFoodApi,
-    Getpopularapi
+    Getpopularapi,
+    GetpopularApiById
  
 } = require ('../controller/menu');
 
@@ -41,6 +42,7 @@ Router.get('/GetlunchApiById/:_id',GetlunchApiById);
 Router.delete('/HardDeleteLunchApi/:_id',HardDeleteLunchApi);
 Router.post('/PopularFoodApi',popularFood.single('Food-image'),PopularFoodApi);
 Router.get('/Getpopularapi',Getpopularapi);
+Router.get('/GetpopularApiById/:_id',GetpopularApiById)
 
 
 
