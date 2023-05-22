@@ -41,6 +41,7 @@ app.all('*', (req, res, next) => {
 const _Generalsetting = require("./Route/generalsetting");
 const _menu = require ("./Route/menu")
 const _WhatsApp = require('./Route/Whatsapp');
+const _Contact = require('./Route/Contact')
 
 
 
@@ -49,6 +50,7 @@ const _WhatsApp = require('./Route/Whatsapp');
 app.use('/Generalsetting',_Generalsetting)
 app.use('/menu',_menu)
 app.use('/WhatsApp',_WhatsApp)
+app.use('/Contact',_Contact)
 
 // this is our error handling !!!!!!!
 app.use((req, res, next) => {
