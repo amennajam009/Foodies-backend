@@ -1,9 +1,9 @@
-const {OrderTable}  = require('../model/ContactModel');
+const OrderTable  = require('../model/ContactModel');
 
 
 const OrderTableApi = async(req,res) =>{
     try {
-        const GetUserBookingTable = await OrderTable.save(req.body);
+        const GetUserBookingTable = await OrderTable.create(req.body);
         res.json({
             message:'Api works',
             Data:true,
