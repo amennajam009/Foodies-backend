@@ -5,7 +5,7 @@ const mongoose = require('mongoose');
 // FourCards
 
 const OrderTable = new mongoose.Schema({
-    YourName : { type:String, required:true },
+    YourName: { type:String, required:true },
     YourEmail:{type:String, required:true},
     YourPhone:{type:String, required:true},
     Date:{type:String, required:true},
