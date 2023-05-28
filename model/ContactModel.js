@@ -19,4 +19,19 @@ const OrderTable = new mongoose.Schema({
 
 
 
+
+ const ContacUs = new mongoose.Schema({
+    UserName: { type:String, required:true },
+    UserEmail:{type:String, required:true},
+    Subject:{type:String, required:true},
+    Message:{type:String, required:true}   
+},
+ { timestamps: true });
+
  module.exports = mongoose.model('OrderTableCollection',OrderTable); 
+
+
+ module.exports = {
+    OrderTable: mongoose.model('OrderTableCollection', OrderTable),
+    ContacUs: mongoose.model('ContactCollection', ContacUs),  
+  };
