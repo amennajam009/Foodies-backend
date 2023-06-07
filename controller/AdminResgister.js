@@ -39,9 +39,9 @@ const AdminRegister= async(req,res) => {                                        
 
 const AdminLogin = async (req,res) =>{
     try {
-        _FirstName = req.body.FirstName;
+        _Email = req.body.Email;
         _Password = req.body.Password;
-        let _AdminToAuthenticate = await _AdminManagementModel.findOne({ FirstName: _FirstName }); //_Email ==> req.body
+        let _AdminToAuthenticate = await _AdminManagementModel.findOne({ Email: _Email }); //_Email ==> req.body
         if (_AdminToAuthenticate === null) {
             return res.json({
                 message: 'Authentication Failed Either Incorrect Password or UserName',
@@ -60,7 +60,7 @@ const AdminLogin = async (req,res) =>{
         }                                             // when Password and email matched then go to next step 
         const _Token = jwt.sign(                     // jwt.sign take three arguments first payload/body second secreate-key third expire-time
             {
-                _FirstName: _AdminToAuthenticate.FirstName,   
+                _Email: _AdminToAuthenticate.Email,   
                 SaltString: _AdminToAuthenticate.SaltString // payload/body
             },
             MyKey,                                       // secreate-key 
