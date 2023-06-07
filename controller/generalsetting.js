@@ -140,7 +140,7 @@ const HeroImageApi = async (req, res) => {
 
   const FourCardsApi =async (req,res) =>{
    try {
-        const { cardName,cardDescriptionFour } = req.body; 
+        const { cardName,cardDescriptionFour,Price } = req.body; 
         // const imageDetails = req.files.map(file => ({
         // imageUrl: `assets/cards/${file.filename}`,
         //   imageName: file.originalname,
@@ -148,7 +148,7 @@ const HeroImageApi = async (req, res) => {
         // }));
       
         const docToCreate = new homeCardModel({
-          cardName, cardDescriptionFour, 
+          cardName, cardDescriptionFour, Price,
           imageDetails: {
             imageUrl: `assets/cards/${cardName}/${req.file.filename}`,
             imageName: req.file.originalname,
