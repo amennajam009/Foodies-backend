@@ -56,13 +56,13 @@ const HeroImageApi = async (req, res) => {
          const docToSave = await docToCreate.save(); 
          res.json({
              message:"Card Saved !!!",
-             data:true,
+             Data:true,
              result:docToSave 
          })
     } catch (error) {
          res.json({
              message:error.message,
-             data:false, 
+             Data:false, 
              result:null
          })
     }
@@ -113,7 +113,7 @@ const HeroImageApi = async (req, res) => {
       if (!docToDelete) {
         return res.status(404).json({
           message: 'Card not found',
-          data: false,
+          Data: false,
           result: null,
         });
       }
@@ -126,13 +126,13 @@ const HeroImageApi = async (req, res) => {
   
       res.json({
         message: 'Card deleted successfully',
-        data: true,
+        Data: true,
         result: hardDeleteResult,
       });
     } catch (error) {
       res.status(500).json({
         message: error.message,
-        data: false,
+        Data: false,
         result: null,
       });
     }
@@ -158,13 +158,13 @@ const HeroImageApi = async (req, res) => {
         const docToSave = await docToCreate.save(); 
         res.json({
             message:"Card Saved !!!",
-            data:true,
+            Data:true,
             result:docToSave 
         })
    } catch (error) {
         res.json({
             message:error.message,
-            data:false, 
+            Data:false, 
             result:null
         })
    }
@@ -254,7 +254,7 @@ const GetHeroImage =async (req,res) =>{
       if (!docToDelete) {
         return res.status(404).json({
           message: 'Card not found',
-          data: false,
+          Data: false,
           result: null,
         });
       }
@@ -267,13 +267,13 @@ const GetHeroImage =async (req,res) =>{
   
       res.json({
         message: 'Card deleted successfully',
-        data: true,
+        Data: true,
         result: hardDeleteResult,
       });
     } catch (error) {
       res.status(500).json({
         message: error.message,
-        data: false,
+        Data: false,
         result: null,
       });
     }
@@ -367,13 +367,13 @@ const TwoImagesApi = async (req, res) => {
     const docToSave = await docToCreate.save();
     res.json({
       message: "Card Saved !!!",
-      data: true,
+      Data: true,
       result: docToSave,
     });
   } catch (error) {
     res.json({
       message: error.message,
-      data: false,
+      Data: false,
       result: null,
     });
   }
