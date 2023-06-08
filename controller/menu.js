@@ -75,7 +75,7 @@ const HardDeletestarterApi = async (req, res) => {
       if (!docToDelete) {
         return res.status(404).json({
           message: 'Card not found',
-          data: false,
+          Data: false,
           result: null,
         });
       }
@@ -88,13 +88,13 @@ const HardDeletestarterApi = async (req, res) => {
   
       res.json({
         message: 'Card deleted successfully',
-        data: true,
+        Data: true,
         result: hardDeleteResult,
       });
     } catch (error) {
       res.status(500).json({
         message: error.message,
-        data: false,
+        Data: false,
         result: null,
       });
     }
@@ -173,7 +173,7 @@ const HardDeletebreakfastApi = async (req, res) => {
       if (!docToDelete) {
         return res.status(404).json({
           message: 'Card not found',
-          data: false,
+          Data: false,
           result: null,
         });
       }
@@ -186,13 +186,13 @@ const HardDeletebreakfastApi = async (req, res) => {
   
       res.json({
         message: 'Card deleted successfully',
-        data: true,
+        Data: true,
         result: hardDeleteResult,
       });
     } catch (error) {
       res.status(500).json({
         message: error.message,
-        data: false,
+        Data: false,
         result: null,
       });
     }
@@ -271,7 +271,7 @@ const HardDeleteLunchApi = async (req, res) => {
       if (!docToDelete) {
         return res.status(404).json({
           message: 'Card not found',
-          data: false,
+          Data: false,
           result: null,
         });
       }
@@ -284,13 +284,13 @@ const HardDeleteLunchApi = async (req, res) => {
   
       res.json({
         message: 'Card deleted successfully',
-        data: true,
+        Data: true,
         result: hardDeleteResult,
       });
     } catch (error) {
       res.status(500).json({
         message: error.message,
-        data: false,
+        Data: false,
         result: null,
       });
     }
@@ -371,7 +371,7 @@ const HardDeletepopularApi = async (req, res) => {
       if (!docToDelete) {
         return res.status(404).json({
           message: 'Card not found',
-          data: false,
+          Data: false,
           result: null,
         });
       }
@@ -384,13 +384,13 @@ const HardDeletepopularApi = async (req, res) => {
   
       res.json({
         message: 'Card deleted successfully',
-        data: true,
+        Data: true,
         result: hardDeleteResult,
       });
     } catch (error) {
       res.status(500).json({
         message: error.message,
-        data: false,
+        Data: false,
         result: null,
       });
     }
