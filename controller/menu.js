@@ -4,9 +4,9 @@ const path = require('path');
 
 const starterApi = async (req,res) =>{
     try {
-        const {FoodName,FoodDescription,FoodPrice} = req.body;
+        const {FoodName,FoodDescription,Price} = req.body;
         const MappingOfstarterApi = new StarterModel({
-            FoodName,FoodDescription,FoodPrice,
+            FoodName,FoodDescription,Price,
             imageDetails: {
                 imageUrl: `assets/Menu/Starter/${FoodName}/${req.file.filename}`,
                 imageName: req.file.originalname,
