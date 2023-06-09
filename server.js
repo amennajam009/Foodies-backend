@@ -17,6 +17,9 @@ app.use(express.raw());
 app.use(cors());
 // static ka matlb hai icko hum access kr paa rhy han 
 app.use('/assets', express.static('assets')); 
+app.get('/',(req,res)=>{
+    res.send("Hello Wold")
+})
 const PORT = process.env.PORT || 6000
 
 
@@ -68,19 +71,7 @@ app.use((error, req, res, next) => {
 
 
 
-exports.handler = async (event, context) => {
-    if (event.httpMethod === 'GET' && event.path === '/') {
-      return {
-        statusCode: 200,
-        body: 'Hello, World!',
-      };
-    } else {
-      return {
-        statusCode: 404,
-        body: 'Not Found',
-      };
-    }
-  };
+
 
 // //Start Block Accessing The Routes in the Entry Point
 
