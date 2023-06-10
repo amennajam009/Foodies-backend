@@ -301,9 +301,9 @@ const HardDeleteLunchApi = async (req, res) => {
  
   const PopularFoodApi = async (req,res) =>{
     try {
-        const {CardHeading,CardDescription} = req.body;
+        const {CardHeading,CardDescription,Price} = req.body;
         const MappingOfpopularfoodApi = new PopularFoodModel({
-            CardHeading,CardDescription,
+            CardHeading,CardDescription,Price,
             imageDetails: {
                 imageUrl: `assets/popularFood/${CardHeading}/${req.file.filename}`,
                 imageName: req.file.originalname,

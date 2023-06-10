@@ -51,6 +51,7 @@ const StarterModel = new mongoose.Schema({
  const PopularFoodModel = new mongoose.Schema({
     CardHeading : { type:String, required:true },
     CardDescription:{type:String, required:true},
+    Price:{type:Number,required:true},
     status: { type: Number, default: 1 },
     imageDetails: 
         {
