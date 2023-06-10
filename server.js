@@ -18,7 +18,7 @@ app.use(cors());
 // static ka matlb hai icko hum access kr paa rhy han 
 app.use('/assets', express.static('assets')); 
 app.get('/',(req,res)=>{
-    res.send("Hello Wold")
+    res.send("Hello Wold2")
 })
 const PORT = process.env.PORT || 6000
 
