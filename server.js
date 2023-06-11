@@ -47,7 +47,7 @@ const _AdminRegister = require('./Route/AdminRegister')
 
 
 // Routes
-app.use('/Generalsetting',_Generalsetting)
+app.use('https://foodies-backend.vercel.app/Generalsetting',_Generalsetting)
 app.use('/menu',_menu)
 app.use('/WhatsApp',_WhatsApp)
 app.use('/Contact',_Contact)
