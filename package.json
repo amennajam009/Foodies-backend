@@ -5,8 +5,8 @@
   "main": "server.js",
   "scripts": {
     "start": "NODE_ENV==development node server",
-    "dev": "nodemon server",
-    "build": "npm run vercel-build"
+    "dev": "nodemon server"
+ 
   },
   "author": "",
   "license": "MIT",
