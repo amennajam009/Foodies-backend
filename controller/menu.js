@@ -80,7 +80,7 @@ const HardDeletestarterApi = async (req, res) => {
         });
       }
   
-      const imagePath = `./${docToDelete.imageDetails.imageUrl}`;
+      const imagePath = `./${docToDelete.imageDetails[0].imageUrl}`;
       fs.unlinkSync(imagePath);
       fs.rmdirSync(`./assets/Menu/Starter/${docToDelete.FoodName}`);
   
@@ -178,7 +178,7 @@ const HardDeletebreakfastApi = async (req, res) => {
         });
       }
   
-      const imagePath = `./${docToDelete.imageDetails.imageUrl}`;
+      const imagePath = `./${docToDelete.imageDetails[0].imageUrl}`;
       fs.unlinkSync(imagePath);
       fs.rmdirSync(`./assets/Menu/Breakfast/${docToDelete.FoodName}`);
   
@@ -276,7 +276,7 @@ const HardDeleteLunchApi = async (req, res) => {
         });
       }
   
-      const imagePath = `./${docToDelete.imageDetails.imageUrl}`;
+      const imagePath = `./${docToDelete.imageDetails[0].imageUrl}`;
       fs.unlinkSync(imagePath);
       fs.rmdirSync(`./assets/Menu/lunch/${docToDelete.FoodName}`);
   
@@ -376,7 +376,7 @@ const HardDeletepopularApi = async (req, res) => {
         });
       }
   
-      const imagePath = `./${docToDelete.imageDetails.imageUrl}`;
+      const imagePath = `./${docToDelete.imageDetails[0].imageUrl}`;
       fs.unlinkSync(imagePath);
       fs.rmdirSync(`./assets/popularFood/${docToDelete.CardHeading}`);
   
