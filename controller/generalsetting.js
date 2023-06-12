@@ -118,7 +118,7 @@ const HeroImageApi = async (req, res) => {
         });
       }
   
-      const imagePath = `./${docToDelete.imageDetails.imageUrl}`;
+      const imagePath = `./${docToDelete.imageDetails[0].imageUrl}`;
       fs.unlinkSync(imagePath);
       fs.rmdirSync(`./assets/ThreehomeCards/${docToDelete.imageHeading}`);
   
@@ -259,7 +259,7 @@ const GetHeroImage =async (req,res) =>{
         });
       }
   
-      const imagePath = `./${docToDelete.imageDetails.imageUrl}`;
+      const imagePath = `./${docToDelete.imageDetails[0].imageUrl}`;
       fs.unlinkSync(imagePath);
       fs.rmdirSync(`./assets/cards/${docToDelete.cardName}`);
   
@@ -425,7 +425,7 @@ const TwoImagesApi = async (req, res) => {
       const DocToHardDel = await TwoCards.findOne({_id: Id});
       if (!!DocToHardDel) {
         const HardDelById = await TwoCards.deleteOne({_id: DocToHardDel._id});
-        DocToHardDel.imageDetail.forEach((file) => {
+        DocToHardDel.imageDetail[0].forEach((file) => {
           fs.unlinkSync(`${file.imageUrl}`);
         });
         fs.rmdirSync(`./assets/Twoimage`);
