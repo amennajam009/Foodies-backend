@@ -6,13 +6,13 @@ const StarterModel = new mongoose.Schema({
     FoodDescription:{type:String, required:true},
     Price:{type:Number, require:true},
     status: { type: Number, default: 1 },
-    imageDetails: 
+    imageDetails: [
         {
             imageUrl: { type: String  },
             imageName: { type: String  },
             imageMimeType: { type: String},
         }
-    
+    ]
 },
  { timestamps: true });
 
@@ -21,13 +21,13 @@ const StarterModel = new mongoose.Schema({
     FoodDescription:{type:String, required:true},
     Price:{type:Number, require:true},
     status: { type: Number, default: 1 },
-    imageDetails: 
+    imageDetails: [
         {
             imageUrl: { type: String  },
             imageName: { type: String  },
             imageMimeType: { type: String},
         }
-    
+    ],
 },
  { timestamps: true });
 
@@ -37,13 +37,13 @@ const StarterModel = new mongoose.Schema({
     FoodDescription:{type:String, required:true},
     Price:{type:Number, require:true},
     status: { type: Number, default: 1 },
-    imageDetails: 
+    imageDetails: [
         {
             imageUrl: { type: String  },
             imageName: { type: String  },
             imageMimeType: { type: String},
         }
-    
+    ],
 },
  { timestamps: true });
 
@@ -53,13 +53,13 @@ const StarterModel = new mongoose.Schema({
     CardDescription:{type:String, required:true},
     Price:{type:Number,required:true},
     status: { type: Number, default: 1 },
-    imageDetails: 
+    imageDetails: [
         {
             imageUrl: { type: String  },
             imageName: { type: String  },
             imageMimeType: { type: String},
         }
-    
+    ],
 },
  { timestamps: true });
 

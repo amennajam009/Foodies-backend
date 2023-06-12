@@ -9,13 +9,13 @@ const homeCard = new mongoose.Schema({
     cardDescriptionFour:{type:String, required:true},
     Price:{type:Number , required:true},
     status: { type: Number, default: 1 },
-    imageDetails: 
+    imageDetails: [
         {
             imageUrl: { type: String  },
             imageName: { type: String  },
             imageMimeType: { type: String},
         }
-    
+    ]
 },
  { timestamps: true });
 

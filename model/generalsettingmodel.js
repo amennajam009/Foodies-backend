@@ -25,6 +25,7 @@ const ThreeHomeCards = new mongoose.Schema({
         imageName: { type: String  },
         imageMimeType: { type: String},
     },
+
     imageHeading:{type:String , required:true},
     backflipCardHeading:{type:String, required:true},
     backflipCardDescription:{type:String, required:true},
