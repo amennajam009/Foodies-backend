@@ -14,8 +14,9 @@ const time = today.getTime();
 const UserRegisterSchema = mongoose.Schema({
     firstName: { type: String, required: true},
     lastName: { type: String, required: true},
-    email: { type: String, required: true, unique:true},
-    password: { type: String, required: true},
+    // email: { type: String, required: true, unique:true},
+    Email: { type: String, required: true},
+    Password: { type: String, required: true},
     saltString: { type:String},
     status: { type:Number, default:1 },
     CreatedDate: {
@@ -28,8 +29,8 @@ UserRegisterSchema.pre('save', function(next){
     bcrypt.genSalt(SaltRounds,(err,salt)=>{
         if(salt){
         this.saltString=salt;
-        bcrypt.hash(this.password,salt,(err,hash)=>{
-            this.password=hash;
+        bcrypt.hash(this.Password,salt,(err,hash)=>{
+            this.Password=hash;
             next();
         })
     }

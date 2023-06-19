@@ -5,13 +5,13 @@ const bcrypt = require('bcrypt');
 
 const UserRegister = async (req, res) => {
     try {
-        const { firstName, lastName, email, password } = req.body;
+        const { firstName, lastName, Email, Password } = req.body;
 
             const _RegisterUser = new _UserManagementModel({
                 firstName,
                 lastName,
-                email,
-                password
+                Email,
+                Password
             });
             await _RegisterUser.save();
             res.json({
@@ -26,8 +26,8 @@ const UserRegister = async (req, res) => {
 
 const UserLogin = async (req, res) => {
     try {
-        _Email = req.body.email;
-        _Password = req.body.password;
+        _Email = req.body.Email;
+        _Password = req.body.Password;
         let _UserToAuthenticate = await _UserManagementModel.findOne({ Email: _Email });
         if (_UserToAuthenticate === null) {
             return res.json({
@@ -37,7 +37,7 @@ const UserLogin = async (req, res) => {
             })
         }
 
-        const _Result = await bcrypt.compare(_Password, _UserToAuthenticate.password);
+        const _Result = await bcrypt.compare(_Password, _UserToAuthenticate.Password);
         if (!_Result) {
             return res.json({
                 Message: 'Authentication Failed Either Incorrect Password or Email',
