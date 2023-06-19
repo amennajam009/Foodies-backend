@@ -15,48 +15,23 @@ const UserRegisterSchema = mongoose.Schema({
     status: { type:Number, default:1 },
 },{timestamps:true})
 
-// UserRegisterSchema.pre('save', function(next){
-//     bcrypt.genSalt(SaltRounds,(err,salt)=>{
-//         if(salt){
-//         this.saltString=salt;
-//         bcrypt.hash(this.Password,salt,(err,hash)=>{
-//             this.Password=hash;
-//             next();
-//         })
-//     }
-//     else {
-//         res.json({
-//             Error:err.message
-//         })
-//     }
-//     })
-// });
-
-
-UserRegisterSchema.pre('save', function (next) {
-    if (!this.Email) {
-      return next(new Error('Email is required'));
+UserRegisterSchema.pre('save', function(next){
+    bcrypt.genSalt(SaltRounds,(err,salt)=>{
+        if(salt){
+        this.saltString=salt;
+        bcrypt.hash(this.Password,salt,(err,hash)=>{
+            this.Password=hash;
+            next();
+        })
     }
-  
-    if (!this.Password) {
-      return next(new Error('Password is required'));
+    else {
+        res.json({
+            Error:err.message
+        })
     }
-  
-    bcrypt.genSalt(SaltRounds, (err, salt) => {
-      if (err) {
-        return next(err);
-      }
-  
-      this.saltString = salt;
-      bcrypt.hash(this.Password, salt, (err, hash) => {
-        if (err) {
-          return next(err);
-        }
-        this.Password = hash;
-        next();
-      });
-    });
-  });
+    })
+});
+
 //End Block Schema Creating
 
 //Exporting The Schema
