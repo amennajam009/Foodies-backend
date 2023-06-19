@@ -17,14 +17,11 @@ app.use(express.raw());
 app.use(cors());
 // static ka matlb hai icko hum access kr paa rhy han 
 app.use('/assets', express.static('assets')); 
-// app.get('/',(req,res)=>{
-//     res.send("Hello Wold2")
-// })
+
 const PORT = process.env.PORT || 6000
 
 
 app.all('*', (req, res, next) => {
-   
     res.header('Access-Control-Allow-Origin', '*');// So it make the header allow to the origin when cross platfrom try to exchange the data
     res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Authorization');
     if (req.method === 'OPTIONS') {
@@ -41,7 +38,8 @@ const _Generalsetting = require("./Route/generalsetting");
 const _menu = require ("./Route/menu")
 const _WhatsApp = require('./Route/Whatsapp');
 const _Contact = require('./Route/Contact');
-const _AdminRegister = require('./Route/AdminRegister')
+const _AdminRegister = require('./Route/AdminRegister');
+
 
 
 
@@ -52,6 +50,7 @@ app.use('/menu',_menu)
 app.use('/WhatsApp',_WhatsApp)
 app.use('/Contact',_Contact)
 app.use('/AdminRegister', _AdminRegister)
+
 
 // this is our error handling !!!!!!!
 app.use((req, res, next) => {

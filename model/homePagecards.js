@@ -16,6 +16,7 @@ const homeCard = new mongoose.Schema({
             imageMimeType: { type: String},
         }
     ]
+    
 },
  { timestamps: true });
 
