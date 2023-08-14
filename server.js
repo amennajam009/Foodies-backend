@@ -40,7 +40,7 @@ const _WhatsApp = require('./Route/Whatsapp');
 const _Contact = require('./Route/Contact');
 const _AdminRegister = require('./Route/AdminRegister');
 const _UserRegister = require('./Route/UserRegister')
-
+const _customerbooking = require('./Route/customeronlinebooking')
 
 
 
@@ -52,6 +52,7 @@ app.use('/WhatsApp',_WhatsApp)
 app.use('/Contact',_Contact)
 app.use('/AdminRegister', _AdminRegister)
 app.use('/UserRegister', _UserRegister)
+app.use('/customeronlinebooking', _customerbooking)
 
 
 // this is our error handling !!!!!!!
