@@ -1,10 +1,10 @@
-const {CustomerOnlineBooling}  = require('../model/customeronlinebooking');
+const {customeronlinebooking} = require('../model/customeronlinebooking');
 
 
 const CustomerOnlineBookingAPI =async (req,res) =>{
     try {
         const {Username,Emailaddress,FirstName,LastName,City} =req.body;
-        const MappingData = await CustomerOnlineBooling.save({
+        const MappingData = new customeronlinebooking({
             Username,
             Emailaddress,
             FirstName,
@@ -16,8 +16,9 @@ const CustomerOnlineBookingAPI =async (req,res) =>{
                 imageMimeType: req.file.mimetype,
             }
         });
+        const DocToSave = await MappingData.save()
         res.json({
-            result:MappingData,
+            result:DocToSave,
             message:'Saved Successfully!!',
             data:true
         })

@@ -26,5 +26,5 @@ const customeronlinebooking = new mongoose.Schema({
 
 
 module.exports = {
-    OrderTable: mongoose.model('CustomerOnlineBooking', customeronlinebooking),
+    customeronlinebooking: mongoose.model('CustomerOnlineBooking', customeronlinebooking),
   };
