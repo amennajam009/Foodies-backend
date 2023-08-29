@@ -10,11 +10,11 @@ const CustomerOnlineBookingAPI =async (req,res) =>{
             FirstName,
             LastName,
             City,
-            // imageDetails: {
-            //     imageUrl: `assets/customers/${FirstName}/${req.file.filename}`,
-            //     imageName: req.file.originalname,
-            //     imageMimeType: req.file.mimetype,
-            // },
+            imageDetails: {
+                imageUrl: `assets/customers/${FirstName}/${req.file.filename}`,
+                imageName: req.file.originalname,
+                imageMimeType: req.file.mimetype,
+            },
             html:customerHtmlCode
         });
         const DocToSave = await MappingData.save()

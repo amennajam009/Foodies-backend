@@ -1,5 +1,4 @@
 
-
 const customerHtmlCode = 
        `                    <div class="col-lg-8 ms-5">
        <div class="row">
