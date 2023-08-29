@@ -8,6 +8,7 @@ const customeronlinebooking = new mongoose.Schema({
     FirstName:{type:String, required:true},
     LastName:{type:String, required:true},
     City:{type:String, required:true},
+    html: {type: String},
     imageDetails: [
         {
             imageUrl: { type: String  },
