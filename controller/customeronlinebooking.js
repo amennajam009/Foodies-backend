@@ -39,6 +39,28 @@ const CustomerOnlineBookingAPI =async (req,res) =>{
     }
 } 
 
+
+const CustomerOnlineBookinggetAPI =async (req,res) =>{
+ try {
+    const GetData = await customeronlinebooking.find();
+    res.json({
+        message:"Api Working Successfully!!",
+        Data:true,
+        Result:GetData
+    })
+ } catch (error) {
+    res.json({
+        message:error.message, 
+        Data:false,
+        Result:null
+    })
+ }
+
+}
+
+
+
 module.exports={
-   CustomerOnlineBookingAPI
+   CustomerOnlineBookingAPI,
+   CustomerOnlineBookinggetAPI
     }
