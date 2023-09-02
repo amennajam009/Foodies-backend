@@ -1,16 +1,28 @@
 const {customeronlinebooking} = require('../model/customeronlinebooking');
-const {customerHtmlCode} = require('../CustomerHtml/customerHtml')
+// const {customerHtmlCode} = require('../CustomerHtml/customerHtml')
 
 const CustomerOnlineBookingAPI =async (req,res) =>{
     try {
         const {Username,Emailaddress,FirstName,LastName,City} =req.body;
+        const Htmlcode = 
+        `<div class="card" style="width: 18rem;">
+        <div class="card-body">
+          <h5 class="card-title">${Username}</h5>
+          <h6 class="card-subtitle mb-2 text-muted">${FirstName}</h6>
+          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+          <a href="#" class="card-link">${LastName}</a>
+          <a href="#" class="card-link">${City}</a>
+          <a href="#" class="card-link">${Emailaddress}</a>
+        </div>
+      </div>
+        `
         const MappingData = new customeronlinebooking({
             Username,
             Emailaddress,
             FirstName,
             LastName,
             City,
-            html:customerHtmlCode
+            html:Htmlcode
         });
         const DocToSave = await MappingData.save()
         res.json({
